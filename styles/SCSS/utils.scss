@@ -1,0 +1,477 @@
+$primaryColor: #09313e;
+
+$primaryLight: rgba(2, 167, 217, 0.1);
+$Gray: #686868;
+$GrayD: #6a6363;
+$SecondaryColor: #ef3c23;
+$Dark: #0d0106;
+
+$GrayOne: #f9f9f9;
+$GrayTwo: #f2f2f2;
+$grayFour: #e3e3e3;
+$buttonone: #159996;
+$TabGray: #e5e7eb;
+
+$GrayOne: #f9f9f9;
+$GrayTwo: #f2f2f2;
+$grayFour: #e3e3e3;
+$buttonone: #159996;
+
+//  font family
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.Poppins {
+  font-family: "Poppins", sans-serif;
+}
+// fonts closed
+
+.bg-primary {
+  background-color: $primaryColor;
+}
+.bg-primary-light {
+  background-color: $primaryLight;
+}
+
+.bg-gray {
+  background-color: $Gray;
+}
+.bg-grayOne {
+  background-color: $GrayOne;
+}
+.bg-grayTwo {
+  background-color: $GrayTwo;
+}
+.bg-grayFour {
+  background-color: $grayFour;
+}
+.bg-grayD {
+  background-color: $GrayD;
+}
+.border-primary {
+  border-color: $primaryColor;
+}
+.text-primary {
+  color: $primaryColor;
+}
+.bg-secondary {
+  background-color: $SecondaryColor;
+}
+.text-secondary {
+  color: $SecondaryColor;
+}
+.text-gray {
+  color: $Gray;
+}
+.text-grayD {
+  color: #686868;
+}
+.text-gray-dark {
+  color: $GrayD;
+}
+
+@mixin btn($bg, $color) {
+  background-color: $bg;
+  color: $color;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  padding: 8px 16px;
+  transition: all 0.2s;
+}
+.btn-primary {
+  @include btn($primaryColor, white);
+}
+.btn-Add {
+  @include btn($buttonone, white);
+}
+.btn-secondary {
+  @include btn($GrayD, black);
+}
+@mixin btn-outline($color, $border) {
+  border: 1px solid $border;
+  color: $color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline-primary {
+  @include btn-outline($primaryColor, $primaryColor);
+  cursor: pointer;
+}
+
+.btn-outline-secondary {
+  @include btn-outline($SecondaryColor, $SecondaryColor);
+  cursor: pointer;
+}
+.btn-outline-Gray {
+  @include btn-outline($Gray, $Gray);
+  cursor: pointer;
+}
+.card {
+  background-color: white;
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+}
+
+.card-one {
+  background-color: white;
+  // border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.02);
+  padding: 1.5rem 2.5rem;
+}
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.OverViewButton {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  height: fit-content;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0.8rem;
+}
+
+body::-webkit-scrollbar-track {
+  display: none;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  display: none;
+  background-color: rgb(117, 136, 144);
+  outline: 1px solid slategrey;
+}
+.scroll {
+  overflow: scroll;
+}
+.scroll::-webkit-scrollbar {
+  display: none;
+  width: 0.08rem;
+}
+.scroll::-webkit-scrollbar-thumb {
+  display: none;
+  background-color: $GrayD;
+  outline: 1px solid $GrayD;
+}
+#UserProfile::after {
+  content: " ";
+  height: 0;
+  position: absolute;
+  width: 0;
+  top: -19px;
+  right: 14px;
+  border: 10px solid transparent;
+  border-bottom-color: $GrayTwo;
+}
+input {
+  outline: none;
+}
+// default css for html elemets
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h4 {
+  display: block;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h6 {
+  display: block;
+  font-size: 0.67em;
+  margin-top: 2.33em;
+  margin-bottom: 2.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.collapsible .content {
+  padding: 0.5rem;
+}
+.collapsible .content-parent {
+  height: 0px;
+  overflow: hidden;
+  transition: height ease-in-out 0.4s;
+}
+.roundeds {
+  display: none;
+  color: transparent;
+  padding: 0px 0px 0px 5px;
+  transition: ease-in-out 0.8s;
+
+  background: #03c9a9;
+  position: relative;
+  display: block;
+  float: left;
+}
+.roundeds::before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid #03c9a9;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 1;
+}
+.roundeds::after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid #03c9a9;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 100%;
+  z-index: 2;
+}
+.text {
+  color: #03c9a9;
+}
+.bg-color {
+  background-color: rgb(251, 252, 252);
+}
+
+.categoryFilter {
+  color: rgb(239, 239, 239);
+  text-shadow: 1px 1px 5px rgb(25, 24, 24);
+}
+.hoverme:hover {
+  background-color: #02a8da;
+}
+.textPrimary:hover {
+  color: rgba(160, 4, 125, 1);
+}
+
+// .featureData{
+//   background-image: url('../../public/Teamwork.jpeg');
+//   // background-image:linear-gradient(0deg, rgba(2,10,20,0.8995973389355743) 20%, rgba(0,2,20,0.6979166666666667) 55%, rgba(1,2,1,0.3029586834733894) 80%, rgba(1,2,3,0.8995973389355743) 100%), url(../../public/Teamwork.jpeg);
+//   background-repeat: no-repeat;
+
+// }
+// .featureData::before{
+//   ba
+// }
+
+.hovertext:hover {
+  color: #02a8da;
+}
+
+.smalltext {
+  font-size: 1px;
+  color: red;
+}
+.borderRadiusHome {
+  width: 0;
+  height: 345px;
+  // border: 130px solid green;
+  // border-left: 25px solid red;
+  // border-width: 0 25px 25px 0px;
+  // border-right: 200px solid red;
+
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 800px;
+  border-bottom-right-radius: 505px;
+  border: 100px solid rgba(160, 4, 125, 1);
+  transform: rotatex(180deg);
+  // position: relative;
+}
+.borderRadiusHome::before {
+  content: "";
+  top: -83px;
+  left: -104px;
+  position: absolute;
+  // border-radius: 10px;
+  background-color: rgba(160, 4, 125, 1);
+  // background-color: red;
+  width: 300px;
+  height: 250px;
+  border-bottom-left-radius: 170px;
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 30px;
+
+  border-top-right-radius: 50px;
+  transform: rotate(8deg);
+}
+.borderRadiusHome::after {
+  content: "";
+  top: 173px;
+  left: -110px;
+  position: absolute;
+  width: 282px;
+  height: 60px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 30px;
+  transform: rotate(-22deg);
+  // background-color: red;
+
+  background-color: rgba(160, 4, 125, 1);
+}
+.buttonWidth {
+  width: 570px;
+}
+
+// fonts closed
+// css for slider
+.width {
+  min-width: 100%;
+}
+// scroll to top ko button ko css included gareko
+.back-to-top {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  font-size: 50px;
+  background: rgba(160, 4, 125, 1);
+  color: white;
+  cursor: pointer;
+  border-radius: 100px;
+  border: none;
+  box-shadow: 0 5px 10px rgb(156, 62, 136);
+  z-index: 10;
+}
+
+.borderRight {
+  background-color: gray;
+  width: 1px;
+  height: 15px;
+}
+.borderRadiusTop {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.borderRadiusTopHover:hover {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+@keyframes nextPage {
+  0% {
+    opacity: 0.8;
+    transform: translate(60px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes prevPage {
+  0% {
+    opacity: 0.8;
+    transform: translate(-60px, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.tipDown {
+  background-color: rgba(160, 4, 125, 1);
+  position: relative;
+  z-index: 0;
+}
+.tipDown::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  background-color: rgba(160, 4, 125, 1);
+  z-index: -10;
+  height: 30px;
+  top: 20px;
+  left: 18px;
+  rotate: 50deg;
+  // border-bottom-left-radius: 20px;
+  // border-bottom-right-radius: 20px;
+}
+.tipDown1 {
+  background-color: rgba(160, 4, 125, 1);
+  position: relative;
+  z-index: 0;
+}
+.tipDown1::after {
+  content: "";
+  position: absolute;
+  width: 39px;
+  background-color: rgba(160, 4, 125, 1);
+  z-index: -10;
+  height: 20px;
+  top: 16px;
+  left: 18px;
+  rotate: 45deg;
+  // border-bottom-left-radius: 20px;
+  // border-bottom-right-radius: 20px;
+}
+.animatePulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.75;
+      background-color: rgb(33, 28, 28);
+      // color: rgba(160, 4, 125, 1);
+    }
+  }
+}
