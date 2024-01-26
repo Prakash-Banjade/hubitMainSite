@@ -1,34 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoArrowDown } from "react-icons/io5";
 import { MdArrowLeft } from "react-icons/md";
 import TrainingAccomplished from "./TrainingTabs/TrainingAccomplished";
 import TrainingRunning from "./TrainingTabs/TrainingRunning";
 import UpcomingTraining from "./TrainingTabs/UpcomingTraining";
 
-function TrainingTabs() {
-  const [ActiveTab, setActiveTab] = useState("training accomplished");
+function TrainingTabs({ trainings }) {
+  const [activeTab, setActiveTab] = useState("completed");
+
+  const [currentTrainings, setCurrentTrainings] = useState(trainings?.filter(training => training?.status === activeTab))
+
   const Tabs = [
-    { title: "training accomplished" },
-    { title: "training running" },
-    { title: "upcoming training" },
+    { title: "completed" },
+    { title: "running" },
+    { title: "upcomming" },
   ];
-  const handleClick = (title) => {
-    setActiveTab(title);
-  };
-  let mod;
-  switch (ActiveTab) {
-    case "training accomplished":
-      mod = <TrainingAccomplished />;
-      break;
-    case "training running":
-      mod = <TrainingRunning />;
-      break;
-    case "upcoming training":
-      mod = <UpcomingTraining />;
-      break;
-    default:
-      break;
-  }
+
+  useEffect(() => {
+    setCurrentTrainings(trainings?.filter(training => training?.status === activeTab))
+  }, [activeTab])
+
   return (
     <div className="px-12  w-full mx-auto">
       <div
@@ -38,26 +29,24 @@ function TrainingTabs() {
           return (
             <div key={i}>
               <button
-                onClick={() => handleClick(val.title)}
-                className={`${
-                  ActiveTab === val.title
-                    ? "text-main  border-b py-1 border-main"
-                    : ""
-                } capitalize font-medium my-2 md:my-0  xl:my-0 xxl:my-0  outline-none`}
+                onClick={() => setActiveTab(val.title)}
+                className={`${activeTab === val.title
+                  ? "text-main  border-b py-1 border-main"
+                  : ""
+                  } capitalize font-medium my-2 md:my-0 text-2xl xl:my-0 xxl:my-0  outline-none`}
               >
-                {/* {val.title} */}
                 {val.title}
               </button>
             </div>
           );
         })}
       </div>
-      <div>{mod}</div>{" "}
-      <div className="flex w-fit mx-auto items-center justify-center cursor-pointer capitalize">
-        <div className="">show more</div>
-        <div className="">
-          <MdArrowLeft className="h-9 w-9 rotate-[270deg]" />
-        </div>
+      <div>
+        <TrainingAccomplished trainings={currentTrainings} />
+        {
+          currentTrainings?.length === 0 && <span className="text-gray-500 italic my-4">**No trainings for this category**</span>
+        }
+
       </div>
     </div>
   );

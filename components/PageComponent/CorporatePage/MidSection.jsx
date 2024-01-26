@@ -1,19 +1,28 @@
 import Image from "next/image";
-import React from "react";
-import image from "../../Resources/designnoBg.png";
-const MidSection = () => {
-  const dataa = [
-    { images: image, title: "velapaltem accustyions imperials" },
-    { images: image, title: "velapaltem accustyions imperials" },
-    { images: image, title: "velapaltem accustyions imperials" },
-    { images: image, title: "velapaltem accustyions imperials" },
-  ];
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../UI/Axios/Axios";
+
+const MidSection = ({ trainings }) => {
+  const [services, setServices] = useState([])
+
+  useEffect(() => {
+    function fetchServices() {
+      axiosInstance.get('/services').then(res => {
+        setServices(res.data?.result);
+      }).catch(err => {
+        if (err instanceof Error) return console.error(err.message);
+        console.log(err);
+      })
+    }
+    fetchServices()
+  }, [])
+
   const status = [
-    { numbers: 28, title: "training accomplished" },
-    { numbers: 28, title: "training running" },
-    { numbers: 28, title: "upcoming training " },
-    // { numbers: 28, title: "training completed" },
+    { title: "training accomplished", key: "completed" },
+    { title: "training running", key: "running" },
+    { title: "upcoming training", key: "upcomming" },
   ];
+
   return (
     <div>
       <div>
@@ -21,30 +30,24 @@ const MidSection = () => {
           what we do
         </h1>
         <div className="mx-auto  text-xs md:text-base xl:text-base  xxl:text-base text-center md:w-7/12 xl:w-7/12 xxl:w-7/12  text-gray-600">
-         We design a course for your employee or students according to organization need or as per their syllablus of universities
+          We design a course for your employee or students according to organization need or as per their syllablus of universities
         </div>
-        <div className="md:grid xl:grid xxl:grid  grid-cols-4 gap-10 place-items-center my-9 md:my-16 px-4 md:px-10">
-          {dataa.map((val, i) => {
+        <div className="flex items-center justify-center flex-wrap gap-3 mt-5">
+          {services.map((service, i) => {
             return (
-              <div className="relative my-4 md:my-0" key={i}>
-                <div className=" w-full md:w-80 xl:w-80 xxl:w-80 ">
-                  <Image
-                    src={val.images}
-                    layout="responsive"
-                    height={200}
-                    width={300}
-                    // objectfit="cover"
-                    // objectPosition={"center"}
-                    alt="Loading ..."
-                    className="   object-cover object-center"
-                  />{" "}
+              <div className="relative shadow-lg group rounded-md  max-h-[400px] grid place-items-center" key={service?.id}>
+                <Image
+                  src={`https://hubmainback.hubit.com.np/public/${service?.featured_image}`}
+                  height={350}
+                  width={350}
+                  alt="data loading"
+                  className="object-cover object-center w-full rounded-md"
+                  priority
+                />
+                <div className="absolute bottom-0 left-0 w-full h-full rounded-md bg-black bg-opacity-50 flex justify-center items-center">
+                  <h2 className="text-white text-2xl text-center px-2 mt-auto">{service?.name}</h2>
                 </div>
-                <div
-                  className="absolute  bottom-0 bg-[#ff1cd9] bg-opacity-40 w-full text-white
-                  py-2 px-2 capitalize text-center text-xs md:text-base xl:text-base  xxl:text-base"
-                >
-                  {val.title}
-                </div>
+                <div className="absolute group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none opacity-0 transition-all left-20 prose xl:prose-xl bg-white shadow-md p-2 rounded-md" dangerouslySetInnerHTML={{ __html: service?.content }} />
               </div>
             );
           })}
@@ -64,10 +67,10 @@ const MidSection = () => {
               <div
                 key={i}
                 className="bg-main rounded-xl w-full h-40 flex justify-evenly text-white
-               opacity-70  my-4 md:my-0 xl:my-0 xxl:my-0  text-xl font-bold capitalize items-center flex-col  "
+               opacity-70  my-4 md:my-0 xl:my-0 xxl:my-0  text-xl font-bold capitalize items-center flex-col"
               >
-                <div className="">{val.numbers}</div>
-                <div> {val.title}</div>
+                <div className="">{trainings?.filter(training => training?.status === val.key).length}</div>
+                <div>{val.title}</div>
               </div>
             );
           })}

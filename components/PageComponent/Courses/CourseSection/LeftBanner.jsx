@@ -1,12 +1,10 @@
 import Image from "next/image";
 import React from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-// import image from "../../../Resources/images/hero.jpg";
-// import MainImage from "./mainimage";
+const Leftbanner = ({ data }) => {
+  console.log(data);
 
-const Leftbanner = ({ image, coursetitle, description, id }) => {
   const router = useRouter();
   const handleClick = () => {
     router.push({
@@ -19,8 +17,7 @@ const Leftbanner = ({ image, coursetitle, description, id }) => {
         {/* <MainImage /> */}
         <div className="flex gap-5">
           <div className=" border rounded-lg h-98 w-full mx-auto  relative">
-            {/* <Image src={`${image}`} alt="image" layout="fill" className="" /> */}
-            <img src={`${image}`} alt="image" layout="fill" className="" />
+            <Image src={`https://hubmainback.hubit.com.np/public/${data?.image}`} alt={data?.title} layout="fill" className="" />
             {/* {image ? (
               <div
                 className="h-full "
@@ -38,8 +35,12 @@ const Leftbanner = ({ image, coursetitle, description, id }) => {
             )} */}
           </div>
           <div>
-            <h1 className="text-xl poppins">{coursetitle}</h1>
-            <div dangerouslySetInnerHTML={{ __html: description }} className="prose xl:prose" />
+            <h1 className="text-xl mt-0 poppins">{data?.title}</h1>
+            {
+              data?.description ?
+                <div dangerouslySetInnerHTML={{ __html: data?.description }} className="prose xl:prose" />
+                : <div className="text-lg font-base text-gray-600">No description added yet!</div>
+            }
 
             <button
               onClick={handleClick}

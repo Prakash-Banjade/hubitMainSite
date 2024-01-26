@@ -14,7 +14,6 @@ const CourseDetails = ({ detail }) => {
   const router = useRouter();
 
   const [data, setData] = useState(null);
-  const [description, setDes] = useState(null);
   const [ID, setID] = useState("");
   const [active, setActive] = useState("overview");
 
@@ -39,7 +38,7 @@ const CourseDetails = ({ detail }) => {
   const Tabs = () => {
     switch (active) {
       case "overview":
-        return <OverView detail={detail} id={ID} description={data?.description} />;
+        return <OverView data={data} />;
         break;
       case "curiculum":
         return <CourseCuriculum />;

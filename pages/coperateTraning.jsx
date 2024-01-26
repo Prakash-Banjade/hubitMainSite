@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MidSection from "../components/PageComponent/CorporatePage/MidSection";
 import TopSection from "../components/PageComponent/CorporatePage/TopSection";
 import Layout from "../HOC/Layout/Layout";
@@ -6,7 +6,20 @@ import Head from "next/head";
 import TrainingPartners from "../components/PageComponent/CorporatePage/TrainingPartners";
 import TrainingTabs from "../components/PageComponent/CorporatePage/TrainingTabs";
 import SliderPage from "../components/PageComponent/CorporatePage/SliderPage";
+import axiosInstance from "../components/UI/Axios/Axios";
 const coperateTraning = () => {
+
+  const [trainings, setTrainings] = useState([])
+
+  useEffect(() => {
+    axiosInstance.get('/trainings').then(res => {
+      setTrainings(res?.data?.result);
+    }).catch(err => {
+      if (err instanceof Error) return console.error(err.message);
+      console.log(err);
+    })
+  }, [])
+
   return (
     <>
       <Head>
@@ -14,8 +27,8 @@ const coperateTraning = () => {
       </Head>
       <Layout>
         <TopSection />
-        <MidSection />
-        <TrainingTabs />
+        <MidSection trainings={trainings} />
+        <TrainingTabs trainings={trainings} />
         <SliderPage />
         <TrainingPartners />
       </Layout>
