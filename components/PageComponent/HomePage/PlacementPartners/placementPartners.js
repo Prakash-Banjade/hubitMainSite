@@ -1,28 +1,6 @@
-import Image from "next/image";
 import imgLink from "../../../Navigation/Navitem/placementpartners";
 import Link from "next/link";
 const PlacementPartners = () => {
-  // const Placement =[
-  //   {
-  //     image : ImageFirst
-  //   },
-  //   {
-  //     image : Image1
-  //   },
-  //   {
-  //     image : Image2
-  //   },
-  //   {
-  //     image : Image3
-  //   },
-  //   {
-  //     image : Image4
-  //   },
-  //   {
-  //     image : Image5
-  //   },
-  // ]
-  // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <div className=" px-2 md:px-4 lg:px-20 xl:px-24 xxl:px-32 mt-10 flex flex-col items-center ">
@@ -35,11 +13,12 @@ const PlacementPartners = () => {
             <div key={i}>
               <div className="w-24 h-10 p-2">
                 <Link href={item.path} target="_blank">
-                  <Image
+                  {/* <Image
                     src={item.image}
                     alt="image"
                     className="cursor-pointer"
-                  />
+                  /> */}
+                  <div className="w-40 h-40 bg-gray-300"></div>
                 </Link>
               </div>
             </div>

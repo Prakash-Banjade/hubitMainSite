@@ -121,14 +121,15 @@ const Body = () => {
              w-[300px] md:w-[250px] xl:w-[250px] xxl:w-[250px] my-6 xl:my-0 xxl:my-0  "
                 >
                   <div className="w-[300px] md:w-[250px] xl:w-[250px] xxl:w-[250px]  ">
-                    <Image
+                    {/* <Image
                       src={val.images}
                       layout="responsive"
                       // objectfit="cover"
                       // objectPosition={"center"}
                       alt="Loading ..."
                       className="   object-cover object-center"
-                    />{" "}
+                    />{" "} */}
+                    <div className="w-full h-[200px] bg-gray-300 "></div>
                   </div>
                   <div className="px-4  mt-4 capitalize text-sm line-clamp-1 w-11/12 ">
                     {val.topic}
@@ -136,7 +137,7 @@ const Body = () => {
                   <div className="w-11/12 h-[1px] bg-gray-300 my-4 mx-auto"></div>
                   <div className="flex justify-between items-center px-4 pb-3">
                     <div className="w-10 h-10 bg-gray-300  rounded-full">
-                      <Image
+                      {/* <Image
                         src={val.images}
                         layout="responsive"
                         // objectfit="cover"
@@ -144,7 +145,8 @@ const Body = () => {
                         height={100}
                         alt="Loading ..."
                         className=" object-cover rounded-full object-center"
-                      />{" "}
+                      />{" "} */}
+                      <div className="w-full h-[200px] bg-gray-300 "></div>
                     </div>
                     <div className="capitalize text-sm">{val.name}</div>
                     <div className="flex items-center gap-2">

@@ -8,17 +8,15 @@ function SuccessStudentCard({ image, placement, as, name, position }) {
     cursor-pointer duration-300 ease-linear  w-fit   capitalize pb-5 rounded-md"
     >
       <div className="w-56">
-        <Image
+        {/* <Image
           src={image}
           height={85}
           width={100}
           alt="Loading ..."
-          // layout="responsive"
-          // objectFit="cover"
-          // placeholder="blur"
           blurDataURL={image}
           className="borderRadiusTop"
-        />
+        /> */}
+        <div className="h-[85px] w-[100px] bg-gray-400"></div>
       </div>
       <div className="px-2 relative ">
         <div

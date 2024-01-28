@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "build": "next  build",
+    "start": "NODE_ENV=production node --max-old-space-size=8192 server.js",
     "postbuild": "next-sitemap --config=next.config.js"
   },
   "dependencies": {

@@ -7,8 +7,8 @@ import TrainingPartners from "../components/PageComponent/CorporatePage/Training
 import TrainingTabs from "../components/PageComponent/CorporatePage/TrainingTabs";
 import SliderPage from "../components/PageComponent/CorporatePage/SliderPage";
 import axiosInstance from "../components/UI/Axios/Axios";
-const coperateTraning = () => {
 
+const CorporateTraining = () => {
   const [trainings, setTrainings] = useState([])
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const coperateTraning = () => {
   );
 };
 
-export default coperateTraning;
+export default CorporateTraining;

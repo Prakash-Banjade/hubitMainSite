@@ -252,7 +252,7 @@ function Otaku() {
             Otaku Jatra
           </div>
           <div className="w-24 h-24   cursor-pointer absolute bottom-7 right-4  ">
-            <Image
+            {/* <Image
               src={Logo}
               priority
               layout="fill"
@@ -260,7 +260,8 @@ function Otaku() {
               quality={100}
               alt="logo"
               className="absolute rounded-full bg-white w-44 flex justify-center items-center "
-            />
+            /> */}
+            <div className="text-2xl text-main">Hub IT</div>
           </div>
         </div>
       </div>

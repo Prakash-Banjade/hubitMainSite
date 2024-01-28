@@ -50,16 +50,15 @@ function SliderPage() {
               return (
                 <div
                   key={i}
-                  className={`md:w-[260px]   ${
-                    i % 2 === 0
+                  className={`md:w-[260px]   ${i % 2 === 0
                       ? "mt-0"
                       : "md:mt-60 lg:mt-60  xl:mt-60  xxl:mt-60  w-full "
-                  } `}
+                    } `}
                 >
                   <div
                     className={` w-[300px] md:w-[272px] lg:w-[272px] xl:w-[272px] xxl:w-[272px] h-fit   `}
                   >
-                    <Image
+                    {/* <Image
                       src={val.images}
                       layout="responsive"
                       height={350}
@@ -68,7 +67,8 @@ function SliderPage() {
                       // objectPosition={"center"}
                       alt="Loading ..."
                       className="  h-fit object-cover object-center"
-                    />
+                    /> */}
+                    <div className="w-300 h-350 bg-gray-600"></div>
                   </div>
                 </div>
               );

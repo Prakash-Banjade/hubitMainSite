@@ -1,6 +1,5 @@
 import React from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import Image from "next/image";
 
 function Regular({ clientDetails, StartValue, EndValue, prev, next }) {
   return (
@@ -24,7 +23,7 @@ function Regular({ clientDetails, StartValue, EndValue, prev, next }) {
                     className="w-20 h-20 absolute left-8 top-5 border-2 lg:w-12 xl:w-20 xxl:w-20
                  border-white rounded-full "
                   >
-                    <Image
+                    {/* <Image
                       src={val.image}
                       height={70}
                       width={70}
@@ -32,7 +31,8 @@ function Regular({ clientDetails, StartValue, EndValue, prev, next }) {
                       layout="responsive"
                       objectFit={"cover"}
                       className="rounded-full "
-                    />
+                    /> */}
+                    <div className="h-70 w-70 bg-gray-600"></div>
                   </div>
                   {/* testing lai height fit rakhya chu hai */}
                   <div className="  h-32 w-9/12 mx-auto rounded-2xl px-16 py-3 text-center bg-slate-200 ">

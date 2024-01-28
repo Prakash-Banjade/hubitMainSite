@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { BsCheckCircle } from "react-icons/bs";
 
 const ContentSection = () => {
@@ -29,12 +28,13 @@ const ContentSection = () => {
         </div>
         <div>
           <div className="absolute right-0 top-[-50px] h-[450px] w-96 box-shadow">
-            <Image
+            {/* <Image
               src="/images/portal.jpg"
               alt="image of something"
               layout="fill"
               objectfit="cover"
-            />
+            /> */}
+            <div className="bg-main w-full h-full"></div>
           </div>
         </div>
       </div>

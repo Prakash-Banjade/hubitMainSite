@@ -47,7 +47,7 @@ function CourseCuriculum() {
       <div className=" bg-gray-50 p-3 overflow-y-auto rounded-md shadow-sm max-h-[800px]">
         <div className="flex flex-col gap-8">
           {
-            loading && new Array(5).fill(0).map((_, i) => <div key={i} class="h-12 bg-gray-300 rounded-md w-full animate-pulse"></div>)
+            loading && new Array(5).fill(0).map((_, i) => <div key={i} className="h-12 bg-gray-300 rounded-md w-full animate-pulse"></div>)
           }
         </div>
         {!loading && courseCuriculumData?.map((val, i) => {

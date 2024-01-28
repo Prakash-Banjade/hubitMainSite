@@ -1,14 +1,6 @@
 import React from "react";
-import Image from "next/image";
-// import { FaUser, FaCommentAlt } from "react-icons/fa";
-//import image from "../../../../public/images/Rectangle 34.jpg"
 
-function PopularCoursesCard({
-  image,
-  CourseTittle,
-  CourseCategory,
-  Description,
-}) {
+function PopularCoursesCard({CourseTittle}) {
   return (
     <div
       className=" 
@@ -16,7 +8,7 @@ function PopularCoursesCard({
       pb-5 rounded-lg"
     >
       <div className="w-72 ">
-        {image && (
+        {/* {image && (
           <Image
             src={val.image}
             // height={65}
@@ -28,7 +20,7 @@ function PopularCoursesCard({
             blurDataURL={image}
             className="borderRadiusTop bg-red-600 "
           />
-        )}
+        )} */}
       </div>
       <div className=" px-4  flex flex-col items-center justify-center my-6  ">
         <div className="Poppins capitalize font-semibold  text-gray-800">

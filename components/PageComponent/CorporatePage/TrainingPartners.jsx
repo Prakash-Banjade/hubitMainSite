@@ -26,7 +26,7 @@ function TrainingPartners() {
                 className=" w-[150px] md:w-44  lg:w-44  xl:w-44  xxl:w-44 my-10 md:my-0 xl:my-0 xxl:my-0 "
                 key={i}
               >
-                <Image
+                {/* <Image
                   src={val.images}
                   layout="responsive"
                   // objectfit="cover"
@@ -34,7 +34,8 @@ function TrainingPartners() {
                   quality={100}
                   alt="Loading ..."
                   className="   object-cover object-center"
-                />{" "}
+                /> */}
+                <div className="w-full h-72 bg-gray-600"></div>
               </div>
             );
           })}

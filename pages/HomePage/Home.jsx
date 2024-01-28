@@ -65,13 +65,14 @@ function Home() {
         <div className="h-full w-full mt-8  md:mt-4 lg:mt-0 xl:mt-0 mx-auto lg:w-3/6 xl:w-3/6 xxl:w-3/6">
           <div className="relative">
             <div className="ml-[3vw]">
-              <Image
+              {/* <Image
                 src={teacher}
                 alt={"Loading"}
                 layout="responsive"
                 width={120}
                 height={100}
-              />
+              /> */}
+              <div className="w-[120px] h-[100px] bg-gray-300"></div>
             </div>
             <div className="bg-white shadow-[0px_1px_10px_1px_black] h-max py-3 absolute top-[50%] left-[22%]  w-[200px] ">
               <div className="h-full w-full  relative">

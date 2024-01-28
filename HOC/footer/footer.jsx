@@ -116,12 +116,13 @@ function Footer() {
       <div className="flex flex-col md:gap-6 lg:gap-10 xl:gap-10 xxl:gap-10 md:flex-row lg:flex-row xl:flex-row xxl:flex-row lg:items-center xl:items-center xxl:items-center justify-between pb-2 space-y-5 md:space-y-0">
         <div className="w-28 mt-2   cursor-pointer">
           <Link href={"/"}>
-            <Image
+            {/* <Image
               src="/images/hubitLogo1.svg"
               alt="logo"
               height={100}
               width={100}
-            />
+            /> */}
+            <div className="text-2xl text-main">Hub IT</div>
           </Link>
         </div>
 

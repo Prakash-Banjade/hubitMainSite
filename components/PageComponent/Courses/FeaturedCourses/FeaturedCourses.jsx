@@ -1,7 +1,6 @@
-import Image from "next/image";
 import React from "react";
 import { BiCalendarWeek } from "react-icons/bi";
-// import Japan from "../../../Resources/japan.jpg";
+
 function FeaturedCourses() {
   return (
     <div
@@ -26,7 +25,7 @@ function FeaturedCourses() {
       </div>
       <div className="md:flex     lg:flex xl:flex xxl:flex gap-4 ">
         <div className=" w-86 lg:w-96 xl:w-96 xxl:w-98  mt-5 mx-auto md:mx-0 md:mt-10">
-          <Image
+          {/* <Image
             src={"/images/japan.jpg"}
             height={65}
             width={100}
@@ -36,7 +35,8 @@ function FeaturedCourses() {
             placeholder="blur"
             blurDataURL={"/japan.jpg"}
             alt="Loading ..."
-          />
+          /> */}
+          <div className="h-[65px] w-[100px] bg-gray-600"></div>
         </div>
         <div>
           <div

@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { FaQuoteRight } from "react-icons/fa";
 
 function TestimonialsCard({ description, image, name, post }) {
@@ -14,7 +13,7 @@ function TestimonialsCard({ description, image, name, post }) {
       </div>
       <div className="flex items-center  gap-4">
         <div className="w-8 lg:w-10 xxl:w-12 xl:w-12">
-          <Image
+          {/* <Image
             height={100}
             width={100}
             src={image}
@@ -22,7 +21,8 @@ function TestimonialsCard({ description, image, name, post }) {
             // objectFit="cover"
             // layout="responsive"
             className=" rounded-full"
-          />
+          /> */}
+          <div className="w-[100px] h-[100px] bg-slate-400"></div>
         </div>
         <div className="flex flex-col items-center justify-center capitalize">
           <div className="font-bold text-sm lg:text-base"> {name}</div>

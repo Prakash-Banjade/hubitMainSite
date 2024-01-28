@@ -1,7 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import Image from "next/image";
-//import Background from ""
 import { BsPlayCircleFill } from "react-icons/bs";
 function WelcomePortal({ images }) {
   return (
@@ -28,13 +26,13 @@ function WelcomePortal({ images }) {
               xxl:mx-0 xl:mx-0 text-justify"
             >
               <p>
-              We are glad that you have chosen to visit us and hope that you will find what you are looking for. 
-              Our portal is a place where you can access a wide range of information  on a variety of topics through our YouTube channel. 
-              Whether you are looking for our news, events, way we teach, or something else.
-              We encourage you to explore our portal and discover all that we have to offer. 
-              If you have any questions or need help finding something specific, please dont hesitate to reach out to us. 
-              We are always here to assist you and make your experience on our portal as enjoyable as possible. 
-              Thank you for visiting
+                We are glad that you have chosen to visit us and hope that you will find what you are looking for.
+                Our portal is a place where you can access a wide range of information  on a variety of topics through our YouTube channel.
+                Whether you are looking for our news, events, way we teach, or something else.
+                We encourage you to explore our portal and discover all that we have to offer.
+                If you have any questions or need help finding something specific, please dont hesitate to reach out to us.
+                We are always here to assist you and make your experience on our portal as enjoyable as possible.
+                Thank you for visiting
               </p>
             </div>
             <div className="w-full  pt-2 sm:pt-0">
@@ -56,7 +54,7 @@ function WelcomePortal({ images }) {
           >
             <div className="   ">
               <div className="w-72  relative sm:w-72 lg:w-64 md:w-96 xl:w-80 xxl:w-72">
-                <Image
+                {/* <Image
                   src={"/images/portal.jpg"}
                   alt={"/images/portal.jpg"}
                   placeholder="blur"
@@ -67,7 +65,8 @@ function WelcomePortal({ images }) {
                   objectPosition="right"
                   layout="responsive"
                   className="opacity-80"
-                />
+                /> */}
+                <div className="h-[75px] w-[50px] bg-gray-600"></div>
                 <div className="absolute top-48 left-24 ">
                   <BsPlayCircleFill className="h-12 w-12 border border-white rounded-full text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-main hover:border-none duration-300 ..." />
                 </div>
@@ -84,7 +83,7 @@ function WelcomePortal({ images }) {
                     className="sm:w-60 hover:scale-105 transition-all duration-300  cursor-pointer ease-in-out w-72 md:w-64 lg:w-40 xl:w-52
                    xxl:w-48"
                   >
-                    <Image
+                    {/* <Image
                       src={val.image}
                       alt={"image"}
                       placeholder="blur"
@@ -94,7 +93,8 @@ function WelcomePortal({ images }) {
                       objectFit="cover"
                       layout="responsive"
                       className=""
-                    />
+                    /> */}
+                    <div className="h-[38px] w-[35px] bg-gray-600"></div>
                   </div>
                 );
               })}

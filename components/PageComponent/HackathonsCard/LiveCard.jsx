@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import image1 from "../../Resources/bg.png";
+// import image1 from "../../Resources/bg.png";
 function LiveCard() {
   const [Data, setData] = useState([
     {
-      image: image1,
+      // image: image1,
       name: "certificate of achivements",
       endTime: "Hub-IT Institute ",
       day: "6",
@@ -12,7 +12,7 @@ function LiveCard() {
       min: "32",
     },
     {
-      image: image1,
+      // image: image1,
       name: "certificate of achivements",
       endTime: "king Institute",
       day: "9",
@@ -20,7 +20,7 @@ function LiveCard() {
       min: "40",
     },
     {
-      image: image1,
+      // image: image1,
       name: "certificate of achivements",
       endTime: "expert Institute",
 
@@ -29,7 +29,7 @@ function LiveCard() {
       min: "10",
     },
     {
-      image: image1,
+      // image: image1,
       name: "certificate of achivements",
       endTime: "jhapa education institute",
       day: "4",
@@ -50,7 +50,7 @@ function LiveCard() {
       pb-5 rounded-lg border"
             >
               <div className="w-full  overflow-hidden bg-black  hover:bg-gradient-to-t from-[#ad079c] to-[#c7ce76] borderRadiusTop">
-                <Image
+                {/* <Image
                   //   src={`https://cmsback.e-aribt.com/public/${image}`}
                   src={val.image}
                   height={200}
@@ -61,7 +61,8 @@ function LiveCard() {
                   placeholder="blur"
                   blurDataURL={val.image}
                   className="borderRadiusTop  opacity-80  h-60 object-cover  "
-                />
+                /> */}
+                <div className="w-[300px] h-[200px] bg-gray-400"></div>
               </div>
               <div className=" px-3 flex flex-col items-centr justify-center my-6  ">
                 <div className="Poppins capitalize font-bold  text-main  text-[18px]">

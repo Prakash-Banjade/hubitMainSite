@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import Image from "next/image";
-import image1 from "../../Resources/working_photo.png";
-import image2 from "../../Resources/designnoBg.png";
-import image3 from "../../Resources/careerpic.jpg";
-import image4 from "../../Resources/bg.png";
+
 function PreviuosCard() {
   const [Data, setData] = useState([
     {
-      image: image1,
+      // image: image1,
       name: "certificate of achivements",
       endTime: " flash institute ",
       day: "1",
@@ -15,7 +11,7 @@ function PreviuosCard() {
       min: "12",
     },
     {
-      image: image2,
+      // image: image2,
       name: "certificate of achivements",
       endTime: "gear 5 Institute",
       day: "1",
@@ -23,7 +19,7 @@ function PreviuosCard() {
       min: "20",
     },
     {
-      image: image3,
+      // image: image3,
       name: "certificate of achivements",
       endTime: "Hub-IT Institute",
       day: "1",
@@ -31,7 +27,7 @@ function PreviuosCard() {
       min: "22",
     },
     {
-      image: image4,
+      // image: image4,
       name: "certificate of achivements",
       endTime: "Hub-IT Institute",
 
@@ -53,7 +49,7 @@ function PreviuosCard() {
       pb-5 rounded-lg border"
             >
               <div className="w-full  overflow-hidden bg-black  hover:bg-gradient-to-t from-[#ad079c] to-[#c7ce76] borderRadiusTop">
-                <Image
+                {/* <Image
                   //   src={`https://cmsback.e-aribt.com/public/${image}`}
                   src={val.image}
                   height={200}
@@ -64,7 +60,8 @@ function PreviuosCard() {
                   placeholder="blur"
                   blurDataURL={val.image}
                   className="borderRadiusTop  opacity-80  h-60 object-cover  "
-                />
+                /> */}
+                <div className="w-[300px] h-[200px] bg-gray-400"></div>
               </div>
               <div className=" px-3 flex flex-col items-centr justify-center my-6  ">
                 <div className="Poppins capitalize font-bold  text-main  text-[18px]">

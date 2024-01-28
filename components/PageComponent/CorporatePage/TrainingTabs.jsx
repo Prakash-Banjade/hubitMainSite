@@ -18,7 +18,7 @@ function TrainingTabs({ trainings }) {
 
   useEffect(() => {
     setCurrentTrainings(trainings?.filter(training => training?.status === activeTab))
-  }, [activeTab])
+  }, [activeTab, trainings])
 
   return (
     <div className="px-12  w-full mx-auto">

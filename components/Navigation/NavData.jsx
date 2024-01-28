@@ -20,7 +20,7 @@ export const NavData = [
     title: "Library",
   },
   {
-    path: "/coperateTraning",
+    path: "/corporateTraining",
     title: "Co-operate training",
   },
   {

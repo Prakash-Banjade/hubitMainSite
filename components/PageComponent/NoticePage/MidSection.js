@@ -1,42 +1,40 @@
 import Image from "next/image";
 import React from "react";
 // import MidSectionNav from "./MidSectionNav";
-import image from "../../Resources/bg.png";
-import PaginationSibling from "../PaginationSibling/PaginationSibling";
 const MidSection = () => {
   const Data = [
     {
-      image: image,
+      // image: image,
       date: "jan10,2023 ",
       title: "holiday concern with prithivi jyanthi for tommorrow ",
       desc: `HUB IT is recognized as one of Nepal’s best global skill development and IT training centers. The journey of HUB IT started in 2017 with a big dream to bring applied education to the mass population at an affordable cost. The main purpose of HUB IT is to facilitate, with the best IT-related skills.`,
     },
     {
-      image: image,
+      // image: image,
       date: "jan10,2023 ",
       title: "holiday concern with prithivi jyanthi for tommorrow ",
       desc: `HUB IT is recognized as one of Nepal’s best global skill development and IT training centers. The journey of HUB IT started in 2017 with a big dream to bring applied education to the mass population at an affordable cost. The main purpose of HUB IT is to facilitate, with the best IT-related skills.`,
     },
     {
-      image: image,
+      // image: image,
       date: "jan10,2023 ",
       title: "holiday concern with prithivi jyanthi for tommorrow ",
       desc: `HUB IT is recognized as one of Nepal’s best global skill development and IT training centers. The journey of HUB IT started in 2017 with a big dream to bring applied education to the mass population at an affordable cost. The main purpose of HUB IT is to facilitate, with the best IT-related skills.`,
     },
     {
-      image: image,
+      // image: image,
       date: "jan10,2023 ",
       title: "holiday concern with prithivi jyanthi for tommorrow ",
       desc: `HUB IT is recognized as one of Nepal’s best global skill development and IT training centers. The journey of HUB IT started in 2017 with a big dream to bring applied education to the mass population at an affordable cost. The main purpose of HUB IT is to facilitate, with the best IT-related skills.`,
     },
     {
-      image: image,
+      // image: image,
       date: "jan10,2023 ",
       title: "holiday concern with prithivi jyanthi for tommorrow ",
       desc: `HUB IT is recognized as one of Nepal’s best global skill development and IT training centers. The journey of HUB IT started in 2017 with a big dream to bring applied education to the mass population at an affordable cost. The main purpose of HUB IT is to facilitate, with the best IT-related skills.`,
     },
     {
-      image: image,
+      // image: image,
       date: "jan10,2023 ",
       title: "holiday concern with prithivi jyanthi for tommorrow ",
       desc: `HUB IT is recognized as one of Nepal’s best global skill development and IT training centers. The journey of HUB IT started in 2017 with a big dream to bring applied education to the mass population at an affordable cost. The main purpose of HUB IT is to facilitate, with the best IT-related skills.`,
@@ -73,7 +71,7 @@ const MidSection = () => {
               <div key={i}>
                 <div className="md:flex lg:flex xl:flex xxl:flex gap-10 items-start mb-10">
                   <div className="w-[360px] md:w-[250px] xl:w-[250px] xxl:w-[300px] mb-5 md:mb-0 xl:mb-0 xxl:mb-0 ">
-                    <Image
+                    {/* <Image
                       src={val.image}
                       layout="responsive"
                       height={350}
@@ -82,7 +80,8 @@ const MidSection = () => {
                       // objectPosition={"center"}
                       alt="Loading ..."
                       className="   object-cover object-center"
-                    />{" "}
+                    />{" "} */}
+                    <div className="w-full h-[250px] bg-gray-300 rounded-lg"></div>
                   </div>
                   <div className="md:w-7/12 lg:w-7/12 xl:w-7/12 xxl:w-7/12 ">
                     <div className="font-medium capitalize text-lg Poppins">
