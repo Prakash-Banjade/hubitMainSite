@@ -2,12 +2,14 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState, useEffect } from "react";
 import Layout from "../../HOC/Layout/Layout";
 import Image from "next/image";
-import bg from "../../public/images/Rectangle 35.png";
 import * as Yup from "yup";
+import { ADToBS } from "bikram-sambat-js"
+
 // import { BiVial } from "react-icons/bi";
 // import RulesAndRegulations from "../../components/PageComponent/RulesAndRegulations/RulesAndRegulations";
 //import NameOfCourseToEnroll from "../../components/PageComponent/NameOfCourseToEnroll/NameOfCourseToEnroll";
 import axios from "../../components/UI/Axios/Axios";
+import { format } from "date-fns";
 function AdmissionForm() {
   const [first, setFirst] = useState("");
   const [course, setCourse] = useState([]);
@@ -15,9 +17,8 @@ function AdmissionForm() {
   const getCourse = () => {
     try {
       axios
-        .get(`/course`)
+        .get(`/courses`)
         .then((res) => {
-          console.log(res);
           setCourse(res.data.data);
         })
         .catch((err) => {
@@ -33,17 +34,18 @@ function AdmissionForm() {
   let courseName = [];
   {
     course.map((val, i) => {
-      courseName.push({ id: val.id, course_name: val.course_name });
-      return <div key={i}>{val.course_name}</div>;
+      courseName.push({ id: val.id, title: val.title });
+      return <div key={i}>{val.title}</div>;
     });
   }
+
 
   const admissionForm = [
     {
       label: "full name:",
       name: "name",
       type: "text",
-      apikey: "full_name",
+      apikey: "fullname",
       placeholder: " Enter your full name",
     },
     {
@@ -72,7 +74,7 @@ function AdmissionForm() {
       label: "phone no:",
       name: "phone",
       type: "text",
-      apikey: "phone_no",
+      apikey: "phNo",
       placeholder: "E.g:9878765432 ",
     },
     {
@@ -84,32 +86,38 @@ function AdmissionForm() {
     },
     {
       label: "level of education:",
-      apikey: "level_of_education",
+      apikey: "levelOfEducation",
       as: "radio",
       Gender: [
         {
           label: "slc",
           type: "radio",
-          apikey: "level_of_education",
+          apikey: "levelOfEducation",
           value: "slc",
         },
         {
           label: "+2",
           type: "radio",
-          apikey: "level_of_education",
+          apikey: "levelOfEducation",
           value: "+2",
         },
         {
           label: "bachelor",
           type: "radio",
-          apikey: "level_of_education",
-          value: "bachelor",
+          apikey: "levelOfEducation",
+          value: "Bachelor",
         },
         {
           label: "master",
           type: "radio",
-          apikey: "level_of_education",
+          apikey: "levelOfEducation",
           value: "master",
+        },
+        {
+          label: "vocational",
+          type: "radio",
+          apikey: "levelOfEducation",
+          value: "Vocational",
         },
       ],
     },
@@ -119,7 +127,7 @@ function AdmissionForm() {
           label: "guardians_name:",
           name: "guardianName",
           type: "text",
-          apikey: "guardians_name",
+          apikey: "guardianName",
           placeholder: "Enter your guardian name ",
         },
 
@@ -127,14 +135,14 @@ function AdmissionForm() {
           label: "guardian_number:",
           name: "guardianNumber",
           type: "text",
-          apikey: "guardians_phone_no",
+          apikey: "guardianNumber",
           placeholder: "Enter your guardian number ",
         },
         {
           label: " name of school/college:",
           name: "collegeOrSchoolName",
           type: "text",
-          apikey: "school_or_clg_name",
+          apikey: "college",
           placeholder: "School/college name ",
         },
       ],
@@ -159,11 +167,11 @@ function AdmissionForm() {
   const SelectData = [
     {
       as: "select",
-      apikey: "course_names",
+      apikey: "courseIds",
       options: [
         {
           id: "0",
-          course_name: "choose any course name",
+          title: "choose any course name",
           //   apikey: "course_names",
         },
         ...courseName,
@@ -172,24 +180,24 @@ function AdmissionForm() {
 
     {
       label: "shift(Time):",
-      apikey: "shifts",
+      apikey: "shift",
       Shift: [
         {
           label: "Morning",
           type: "radio",
-          apikey: "shifts",
+          apikey: "shift",
           value: "morning",
         },
         {
           label: "Mid Day",
           type: "radio",
-          apikey: "shifts",
+          apikey: "shift",
           value: "midday",
         },
         {
           label: "Day",
           type: "radio",
-          apikey: "shifts",
+          apikey: "shift",
           value: "day",
         },
       ],
@@ -199,72 +207,72 @@ function AdmissionForm() {
   const FormImage = [
     {
       type: "file",
-      apikey: "image",
+      apikey: "avatar",
       //   placeholder: "image ",
     },
   ];
   // append code
-  const postFormData = (e) => {
-    try {
-    } catch (error) {}
-  };
+  // const postFormData = (e) => {
+  //   try {
+  //   } catch (error) {}
+  // };
   // const handleChange = (e) => {
   //   console.log(e.target.files);
   // };
 
   const AdmissionFormSchema = Yup.object().shape({
-    full_name: Yup.string()
-      .min(2, "Too Short!")
-      .max(25, "Too Long!")
-      .matches(
-        /^[a-zA-Z0-9\s]*$/,
-        "Username can only contain letters, numbers, and whitespace"
-      )
-      .required("Required"),
+    regNo: Yup.string(),
+    fullname: Yup.string().required("Required"),
+    email: Yup.string().required("Required"),
+    phNo: Yup.string().required("Required"),
     address: Yup.string().required("Required"),
     dob: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    guardians_name: Yup.string().required("Required"),
-    guardians_phone_no: Yup.string().required("Required"),
-    phone_no: Yup.string().required("Required"),
-    // level_of_education: Yup.string().required("Required"),
-    school_or_clg_name: Yup.string().required("Required"),
     gender: Yup.string().required("Required"),
-    course_names: Yup.string(),
-    description: Yup.string(),
-    // shifts: Yup.string().required("Required"),
-    image: Yup.string().required("Required"),
+    guardianName: Yup.string().optional(),
+    guardianNumber: Yup.string().optional(),
+    college: Yup.string().required("Required"),
+    levelOfEducation: Yup.string().required("Required"),
+    courseIds: Yup.string().required("Required"),
+    shift: Yup.string().required("Required"),
+    avatar: Yup.mixed(),
+    payment: Yup.mixed(),
   });
-  const Submit = (e) => {
+  const Submit = (e, resetForm) => {
     //alert("sds");
-    console.log(e, "e.target");
     try {
       const formData = new FormData();
-      formData.append("full_name", e.full_name);
-      formData.append("address", e.address);
-      formData.append("file", e.image);
-      formData.append("dob", e.dob);
+      formData.append("fullname", e.fullname);
       formData.append("email", e.email);
-      formData.append("phone_number", e.phone_no);
+      formData.append("phNo", e.phNo);
+      formData.append("address", e.address);
+      formData.append("dob", e.dob);
       formData.append("gender", e.gender);
-      formData.append("level_of_education", e.level_of_education);
-      formData.append("guardians_name", e.guardians_name);
-      formData.append("guardians_phone_number", e.guardians_phone_no);
-      formData.append("course_names", e.course_names);
-      formData.append("shifts", e.shifts);
-      formData.append("school_or_clg_name", e.school_or_clg_name);
+      formData.append("guardianName", e.guardianName);
+      formData.append("guardianNumber", e.guardianNumber);
+      formData.append("college", e.college);
+      formData.append("levelOfEducation", e.levelOfEducation);
+      formData.append("courseIds", e.courseIds);
+      formData.append("shift", e.shift);
+      formData.append("shiftTime", null);
+      formData.append("avatar", e.avatar);
+      const currentDate = new Date();
+      const formattedDate = format(currentDate, 'yyyy-MM-dd');
+      formData.append("joinDate", formattedDate)
+      formData.append("remarks", "")
+
       axios
-        .post("/onlineform/files", formData)
+        .post("/admission", formData)
+
         .then((res) => {
           if (res.status === 200) {
-            //   toast.success("Form added successfullty");
-            alert("Form added successfullty");
+            resetForm()
+            alert("Data added successfully")
           }
         })
         .catch((err) => {
           console.log(err);
         });
-    } catch (error) {}
+    } catch (error) { }
   };
   return (
     <Layout>
@@ -310,28 +318,32 @@ function AdmissionForm() {
           </div>
           <Formik
             initialValues={{
-              name: "",
-              address: "",
-              phone_no: "",
-              dob: "",
-              guardians_name: "",
-              guardians_phone_no: "",
+              fullname: "",
               email: "",
+              phNo: "",
+              address: "",
+              dob: "",
               gender: "",
-              level_of_education: "",
-              school_or_clg_name: "",
-              image: "",
-              shifts: "",
-              course_names: "",
-              description: "",
+              guardianName: "",
+              guardianNumber: "",
+              levelOfEducation: "",
+              college: "",
+              courseIds: [],
+              avatar: "",
+              courseIds: "",
+              shift: "",
             }}
-            validationSchema={AdmissionFormSchema}
+            // validationSchema={AdmissionFormSchema}
             onSubmit={(values, { resetForm }) => {
-              // console.log(values);
+              values = {
+                ...values, dob: ADToBS(values.dob)
+              }
+              console.log(values);
+
               //   alert(5);
-              Submit(values);
-              resetForm();
-              postFormData(values);
+              Submit(values, resetForm);
+              // resetForm();
+              // postFormData(values);
             }}
           >
             {({ errors, touched, handleSubmit, values, setFieldValue }) => (
@@ -369,7 +381,7 @@ function AdmissionForm() {
                                   height={100}
                                   width={100}
                                   className="m-auto h-60 laptop:h-80 rounded-lg "
-                                  //onChange={handleChange}
+                                //onChange={handleChange}
                                 />
                               </label>
                             </div>
@@ -396,11 +408,10 @@ function AdmissionForm() {
                               />
                             </div>
                             <div
-                              className={`${
-                                errors[val.apikey] && touched[val.apikey]
-                                  ? "bg-red-100 my-2"
-                                  : ""
-                              } text-red-400 py-1 px-2 text-xs rounded-lg text-center font-medium`}
+                              className={`${errors[val.apikey] && touched[val.apikey]
+                                ? "bg-red-100 my-2"
+                                : ""
+                                } text-red-400 py-1 px-2 text-xs rounded-lg text-center font-medium`}
                             >
                               {errors[val.apikey] && touched[val.apikey]
                                 ? errors[val.apikey]
@@ -415,9 +426,9 @@ function AdmissionForm() {
                       {admissionForm.map((val, i) => {
                         if (val.as === "select") {
                           return (
-                            <div>
+                            <div key={i}>
                               <div
-                                key={i}
+
                                 className="flex col-span-5 flex-col  h-14  gap-3  "
                               >
                                 <div className="  px-2  capitalize Poppins text-sm  w-fit flex  items-center">
@@ -450,11 +461,10 @@ function AdmissionForm() {
                               </div>
 
                               <div
-                                className={`text-red-400  ${
-                                  errors[val.apikey] && touched[val.apikey]
-                                    ? " my-5  bg-red-100"
-                                    : ""
-                                }  px-1 py-1 text-xs text-center rounded-lg font-medium`}
+                                className={`text-red-400  ${errors[val.apikey] && touched[val.apikey]
+                                  ? " my-5  bg-red-100"
+                                  : ""
+                                  }  px-1 py-1 text-xs text-center rounded-lg font-medium`}
                               >
                                 {errors[val.apikey] && touched[val.apikey]
                                   ? errors[val.apikey]
@@ -466,7 +476,7 @@ function AdmissionForm() {
 
                         if (val.Gender) {
                           return (
-                            <div>
+                            <div key={i}>
                               <div className="flex col-span-5 flex-col  h-14  gap-3  ">
                                 <div className="  px-2  capitalize Poppins text-sm  w-fit flex  items-center">
                                   {val.label}
@@ -496,11 +506,10 @@ function AdmissionForm() {
                                 </div>
                               </div>
                               <div
-                                className={`text-red-400 ${
-                                  errors[val.apikey] && touched[val.apikey]
-                                    ? " bg-red-100 my-2"
-                                    : ""
-                                }  px-1.5 py-1 text-center rounded-lg text-xs font-medium`}
+                                className={`text-red-400 ${errors[val.apikey] && touched[val.apikey]
+                                  ? " bg-red-100 my-2"
+                                  : ""
+                                  }  px-1.5 py-1 text-center rounded-lg text-xs font-medium`}
                               >
                                 {errors[val.apikey] && touched[val.apikey]
                                   ? errors[val.apikey]
@@ -529,11 +538,10 @@ function AdmissionForm() {
                                     </div>
                                   </div>
                                   <div
-                                    className={`text-red-400  ${
-                                      errors[val.apikey] && touched[val.apikey]
-                                        ? " bg-red-100 my-2"
-                                        : ""
-                                    }  px-2 py-1 text-xs text-center rounded-lg font-medium`}
+                                    className={`text-red-400  ${errors[val.apikey] && touched[val.apikey]
+                                      ? " bg-red-100 my-2"
+                                      : ""
+                                      }  px-2 py-1 text-xs text-center rounded-lg font-medium`}
                                   >
                                     {errors[val.apikey] && touched[val.apikey]
                                       ? errors[val.apikey]
@@ -544,36 +552,34 @@ function AdmissionForm() {
                             });
                           } else {
                             return (
-                              <>
-                                <div key={i} className=" ">
-                                  <div className="flex flex-col gap-3 ">
-                                    <div className="w-fit">
-                                      <div className="  px-2 h-full capitalize text-sm Poppins  w-fit flex  items-center">
-                                        <label>{val.label}</label>
-                                      </div>{" "}
-                                    </div>
-                                    <div className="w-full">
-                                      <Field
-                                        type={val.type}
-                                        placeholder={val.placeholder}
-                                        name={val.apikey}
-                                        className=" w-full bg-[#EEEAEA] rounded-lg  px-4 py-3  "
-                                      />
-                                    </div>
+
+                              <div key={i} className=" ">
+                                <div className="flex flex-col gap-3 ">
+                                  <div className="w-fit">
+                                    <div className="  px-2 h-full capitalize text-sm Poppins  w-fit flex  items-center">
+                                      <label>{val.label}</label>
+                                    </div>{" "}
                                   </div>
-                                  <div
-                                    className={`text-red-400  ${
-                                      errors[val.apikey] && touched[val.apikey]
-                                        ? " my-2  bg-red-100"
-                                        : ""
-                                    }  px-2 py-1 text-xs  text-center rounded-lg font-medium`}
-                                  >
-                                    {errors[val.apikey] && touched[val.apikey]
-                                      ? errors[val.apikey]
-                                      : ""}
+                                  <div className="w-full">
+                                    <Field
+                                      type={val.type}
+                                      placeholder={val.placeholder}
+                                      name={val.apikey}
+                                      className=" w-full bg-[#EEEAEA] rounded-lg  px-4 py-3  "
+                                    />
                                   </div>
                                 </div>
-                              </>
+                                <div
+                                  className={`text-red-400  ${errors[val.apikey] && touched[val.apikey]
+                                    ? " my-2  bg-red-100"
+                                    : ""
+                                    }  px-2 py-1 text-xs  text-center rounded-lg font-medium`}
+                                >
+                                  {errors[val.apikey] && touched[val.apikey]
+                                    ? errors[val.apikey]
+                                    : ""}
+                                </div>
+                              </div>
                             );
                           }
                         }
@@ -588,7 +594,7 @@ function AdmissionForm() {
                             {SelectData.map((val, i) => {
                               if (val.Shift) {
                                 return (
-                                  <div className="">
+                                  <div key={i} className="">
                                     <div className="">
                                       <div className="">{val.label}</div>
                                       <div className=" flex gap-4 items-center">
@@ -614,15 +620,14 @@ function AdmissionForm() {
                                     </div>
 
                                     <div
-                                      className={`text-red-400  ${
-                                        errors[val.apikey] &&
+                                      className={`text-red-400  ${errors[val.apikey] &&
                                         touched[val.apikey]
-                                          ? " my-2  bg-red-100"
-                                          : ""
-                                      }  px-1 py-1 text-xs font-medium`}
+                                        ? " my-2  bg-red-100"
+                                        : ""
+                                        }  px-1 py-1 text-xs font-medium`}
                                     >
                                       {errors[val.apikey] &&
-                                      touched[val.apikey] ? (
+                                        touched[val.apikey] ? (
                                         <div>{errors[val.apikey]}</div>
                                       ) : null}
                                     </div>
@@ -630,7 +635,7 @@ function AdmissionForm() {
                                 );
                               } else {
                                 return (
-                                  <div className="">
+                                  <div key={i} className="">
                                     <Field
                                       as={"select"}
                                       name={val.apikey}
@@ -638,26 +643,24 @@ function AdmissionForm() {
                                                      rounded-md outline-none border-none"
                                     >
                                       {val?.options?.map((val, i) => {
-                                        console.log(val);
 
                                         return (
-                                          <option key={i}>
-                                            {val?.course_name}
+                                          <option key={i} value={val.id}>
+                                            {val?.title}
                                           </option>
                                         );
                                       })}
                                     </Field>
 
                                     <div
-                                      className={`text-red-400  ${
-                                        errors[val.apikey] &&
+                                      className={`text-red-400  ${errors[val.apikey] &&
                                         touched[val.apikey]
-                                          ? " my-2  bg-red-100"
-                                          : ""
-                                      }  px-2 py-1 text-xs font-medium`}
+                                        ? " my-2  bg-red-100"
+                                        : ""
+                                        }  px-2 py-1 text-xs font-medium`}
                                     >
                                       {errors[val.apikey] &&
-                                      touched[val.apikey] ? (
+                                        touched[val.apikey] ? (
                                         <div>{errors[val.apikey]}</div>
                                       ) : null}
                                     </div>
@@ -693,11 +696,10 @@ function AdmissionForm() {
                             type="submit"
                             className={`px-5 py-2 capitalize bg-main text-white w-fit 
                         
-                      ${
-                        clickedCheckBox
-                          ? "opacity-100 cursor-pointer transition-all hover:scale-105 ease-in-out duration-300 "
-                          : " opacity-50 cursor-not-allowed"
-                      } rounded-md
+                      ${clickedCheckBox
+                                ? "opacity-100 cursor-pointer transition-all hover:scale-105 ease-in-out duration-300 "
+                                : " opacity-50 cursor-not-allowed"
+                              } rounded-md
                      `}
                             disabled={clickedCheckBox ? "" : "disabled "}
                           >
