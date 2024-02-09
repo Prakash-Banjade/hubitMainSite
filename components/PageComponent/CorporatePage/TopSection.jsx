@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import image from "../../Resources/careerpic.jpg";
+// import image from "../../Resources/careerpic.jpg";
 import axiosInstance from "../../UI/Axios/Axios";
+import Link from "next/link"
 const TopSection = () => {
 
   const [data, setData] = useState({})
@@ -24,7 +25,7 @@ const TopSection = () => {
         <div className="relative z-10">
           <div className=" w-full h-80  bg-main ">
             <Image
-              src={`https://hubmainback.hubit.com.np/public/${data?.banner}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/public/${data?.banner}`}
               layout="fill"
               alt="Loading daata"
               className=" opacity-75  object-cover object-center"
@@ -41,19 +42,20 @@ const TopSection = () => {
           </div>
         </div>
         <div className="px-4 md:px-10  lg:px-10  xl:px-10 xxl:px-10">
-          <div className="md:grid  xl:grid xxl:grid grid-cols-12  h-full ">
-            <div className="md:flex flex-col  col-span-8 xs:w-full sm:w-full md:w-full lg:w-[60vh] xl:w-[60vh] xxl:w-9/12 xxxl:w-9/12">
+          <div className="md:grid  xl:grid xxl:grid grid-cols-12  h-full mt-6">
+            <div className="md:flex prose max-w-none flex-col  col-span-8 xs:w-full sm:w-full md:w-full lg:w-[60vh] xl:w-[60vh] xxl:w-9/12 xxxl:w-9/12">
               <h1 className="text-main font-bold text-lg md:text-3xl xl:text-3xl xxl:text-3xl">
                 {data?.title || 'What is Corporate Training?'}
               </h1>
-              <div dangerouslySetInnerHTML={{ __html: data?.content }} className="prose xl:prose-xl" />
+              <div dangerouslySetInnerHTML={{ __html: data?.content }} className="" />
             </div>
             <div className="xs:hidden sm:hidden  col-span-4  w-[300px] relative z-20 -mt-20">
               <Image
-                src={`https://hubmainback.hubit.com.np/public/${data?.featured_image}`}
-                layout="fill"
+                src={`${process.env.NEXT_PUBLIC_API_URL}/public/${data?.featured_image}`}
+                width={300}
+                height={300}
                 alt="data loading"
-                className="object-cover  object-center"
+                className="h-[300px] w-[300px] rounded"
                 priority
               />
             </div>
@@ -67,9 +69,12 @@ const TopSection = () => {
           <div className="text-white  text-xs md:text-sm xl:text-sm  xxl:text-sm">
             We can help you to train your employee and students to get your dream result
           </div>
-          <div className="bg-yellow-400  w-fit mt-7 md:mt-0 lg:mt-0 xl:mt-0 xxl:mt-0 cursor-pointer px-5 py-2 rounded-3xl text-base capitalize font-medium ">
-            contact us
-          </div>
+
+          <button className="text-main hover:bg-slate-100 w-48  border-0 py-2 px-6 focus:outline-none bg-white rounded-xl text-sm uppercase sm:w-44 xs:w-44 ">
+            <Link href={"/contact"} >
+              contact us
+            </Link>
+          </button>
         </div>
       </div>
     </>

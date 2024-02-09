@@ -25,7 +25,7 @@ const CourseDetails = ({ detail }) => {
         console.log(res?.data, 'courses from course detail');
         setData(res?.data);
       })
-      
+
     }
   }, [router.isReady, router.query]);
   const tabs = [
@@ -68,9 +68,8 @@ const CourseDetails = ({ detail }) => {
                   return (
                     <div
                       key={i}
-                      className={` ${
-                        active === val.title ? "text-white tipDown" : ""
-                      } capitalize px-1 lg:px-4 xl:px-4 xxl:px-4 py-2 cursor-pointer `}
+                      className={` ${active === val.title ? "text-white tipDown" : ""
+                        } capitalize px-1 lg:px-4 xl:px-4 xxl:px-4 py-2 cursor-pointer `}
                       onClick={() => setActive(val.title)}
                     >
                       {val.title}
@@ -95,7 +94,7 @@ const CourseDetails = ({ detail }) => {
           </div>
           <div>
             <ScheduleSection />
-            <EnquiryForm />
+            {/* <EnquiryForm /> */}
           </div>
         </div>
       </div>

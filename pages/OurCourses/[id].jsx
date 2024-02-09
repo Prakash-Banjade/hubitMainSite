@@ -15,7 +15,6 @@ import CourseDetails from "../../components/PageComponent/Courses/CourseDetails/
 // }
 
 function OurCourses({ id, data }) {
-  console.log(id, data, "jghgf");
   return (
     <div>
       <CourseDetails detail={data} id={id} />

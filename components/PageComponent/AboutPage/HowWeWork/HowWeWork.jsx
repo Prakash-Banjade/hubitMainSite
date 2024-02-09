@@ -2,9 +2,8 @@ import React from "react";
 import { BsPeopleFill, BsShareFill } from "react-icons/bs";
 import { IoMail } from "react-icons/io5";
 import { ImPriceTags } from "react-icons/im";
-import ImageFirst from '../../../Resources/working_photo.png';
 
-function HowWeWork() {
+function HowWeWork({ howwework, image }) {
   const data = [
     {
       color_1: "#A0047D",
@@ -55,20 +54,8 @@ function HowWeWork() {
           how we work
         </div>
 
-        <div className="text-xs text-regular Poppins  w-5/6  text-center mx-auto  mt-5 text-gray-400   capitalize">
-          <p>
-            {` At the Hub IT Training Institute, we believe in a collaborative approach to 
-          learning. We work closely with our students and staff to understand their needs and
-          tailor our training and resources to meet those needs. We use a variety of teaching
-          methods, including hands-on exercises, lectures, and group discussions to ensure that
-          our students have a well-rounded learning experience. This provides us the
-          advantage to be people's choice and be industry lending. We not only teach
-          but also give you a job as per your skill and ability. We extremely 
-          that we are not “shovel sellers ” Additionally, we are committed to staying
-          up-to-date with the latest developments in the field of technology and
-          regularly update our curriculum to reflect these changes.`}
-
-          </p>
+        <div className=" Poppins max-w-none prose text-sm text-center mx-auto  mt-5 text-gray-400   capitalize">
+          <div dangerouslySetInnerHTML={{ __html: howwework }} />
         </div>
 
         {

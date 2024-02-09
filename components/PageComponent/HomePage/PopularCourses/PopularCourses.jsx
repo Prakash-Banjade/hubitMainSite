@@ -5,25 +5,7 @@ import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import axios from "../../../UI/Axios/Axios";
 function PopularCourses({ card: courses, value }) {
-  console.log(courses, 'from popular course');
-  const [course, setCourse] = useState([]);
   const [category, setCategory] = useState([]);
-
-  const getCourse = () => {
-    try {
-      axios
-        .get("/courses")
-        .then((res) => {
-          console.log(res.data?.data, 'courses from PopularCourses');
-          setCourse(res.data?.data);
-        })
-        .catch((err) => {
-          console.log(err, 'lsakdfj;liwe;jlafd');
-        });
-    } catch (error) {
-      console.log(error, 'ja fljeil;ajflsdijf');
-    }
-  };
 
   //get category
   const getCategory = () => {
@@ -31,9 +13,7 @@ function PopularCourses({ card: courses, value }) {
       axios
         .get("/category")
         .then((res) => {
-          console.log(res);
           setCategory(res.data?.data);
-          console.log('category', res?.data?.data);
         })
         .catch((err) => {
           console.error(err);
@@ -44,7 +24,6 @@ function PopularCourses({ card: courses, value }) {
   };
 
   useEffect(() => {
-    getCourse();
     getCategory();
   }, []);
 
@@ -95,7 +74,7 @@ function PopularCourses({ card: courses, value }) {
   let EndValue = counter * pagination.end;
   let StartValue = EndValue - pagination.end;
   // perPageChange
-  let PageChange = Math.ceil(courses.length / pagination.end);
+  let PageChange = Math.ceil(courses?.length / pagination.end);
   // setCounter ko increment and decrement login implementation
 
   const prev = () => {
@@ -197,7 +176,6 @@ function PopularCourses({ card: courses, value }) {
             className={` grid grid-cols-4 sm:grid-cols-1 mt-8 md:mb-8 gap-5 w-full`}
           >
             {courses?.slice(StartValue, EndValue)?.map((val, i) => {
-              console.log(val, 'inside loop')
               return (
                 <Link
                   key={i}
@@ -209,8 +187,12 @@ function PopularCourses({ card: courses, value }) {
                     className="shadow-md h-fit  pb-4 w-full rounded-md flex flex-col justify-centre  cursor-pointer"
                   >
                     <div className="h-60  bg-white relative">
-                      <Image src={`https://hubmainback.hubit.com.np/public/${val.image}`} alt={"images"}
-                        className="max-h-200 w-full object-cover" layout="fill" />
+                      {val?.image ?
+                        <Image src={`${process.env.NEXT_PUBLIC_API_URL}/public/${val.image}`} alt={"images"}
+                          className="max-h-200 w-full object-cover" layout="fill" /> : ""
+                      }
+
+
                     </div>
                     <div className="flex h-2/6 items-center pt-2">
                       <div className="px-2 Poppins capitalize h-max">

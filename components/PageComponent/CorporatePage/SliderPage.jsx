@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 // import image from "../../Resources/japan.jpg";
-import image from "../../Resources/careerpic.jpg";
-import Image from "next/image";
+// import image from "../../Resources/careerpic.jpg";
+// import Image from "next/image";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import slider from "react-slick/lib/slider";
 
 function SliderPage() {
   const dataa = [
-    { images: image },
-    { images: image },
-    { images: image },
-    { images: image },
-    { images: image },
-    { images: image },
-    { images: image },
-    { images: image },
+    // { images: image },
+    // { images: image },
+    // { images: image },
+    // { images: image },
+    // { images: image },
+    // { images: image },
+    // { images: image },
+    // { images: image },
   ];
 
   const PreviousClick = () => {
@@ -51,23 +51,23 @@ function SliderPage() {
                 <div
                   key={i}
                   className={`md:w-[260px]   ${i % 2 === 0
-                      ? "mt-0"
-                      : "md:mt-60 lg:mt-60  xl:mt-60  xxl:mt-60  w-full "
+                    ? "mt-0"
+                    : "md:mt-60 lg:mt-60  xl:mt-60  xxl:mt-60  w-full "
                     } `}
                 >
                   <div
                     className={` w-[300px] md:w-[272px] lg:w-[272px] xl:w-[272px] xxl:w-[272px] h-fit   `}
                   >
-                    {/* <Image
-                      src={val.images}
-                      layout="responsive"
-                      height={350}
-                      width={300}
+                    <div
+                      // src={val.images}
+                      // layout="responsive"
+                      // height={350}
+                      // width={300}
                       // objectfit="cover"
                       // objectPosition={"center"}
-                      alt="Loading ..."
+                      // alt="Loading ..."
                       className="  h-fit object-cover object-center"
-                    /> */}
+                    ></div>
                     <div className="w-300 h-350 bg-gray-600"></div>
                   </div>
                 </div>

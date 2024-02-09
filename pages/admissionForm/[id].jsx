@@ -19,7 +19,7 @@ function AdmissionForm() {
       axios
         .get(`/courses`)
         .then((res) => {
-          setCourse(res.data.data);
+          setCourse(res?.data?.result);
         })
         .catch((err) => {
           console.log(err);
@@ -38,7 +38,6 @@ function AdmissionForm() {
       return <div key={i}>{val.title}</div>;
     });
   }
-
 
   const admissionForm = [
     {

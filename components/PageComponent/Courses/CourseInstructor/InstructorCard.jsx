@@ -8,7 +8,7 @@ function InstructorCard({ instructor }) {
   return (
     <div className="flex flex-col lg:flex-row xl:flex-row xxl:flex-row gap-14 ">
       <div
-        className="shadow-md shadow-gray-400 hover:scale-1 
+        className="shadow-sm shadow-gray-400 hover:scale-1 
     transition-all cursor-pointer duration-300 ease-linear  w-fit  
       pb-5 rounded-lg hover:opacity-80 "
       >

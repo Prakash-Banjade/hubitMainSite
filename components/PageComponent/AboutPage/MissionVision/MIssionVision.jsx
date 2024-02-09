@@ -4,29 +4,26 @@ import { GiBinoculars } from "react-icons/gi";
 import { IoIosRocket } from "react-icons/io";
 import { TbClipboardText } from "react-icons/tb";
 
-function MIssionVision() {
+function MIssionVision({ vision, objectives, mission }) {
   const data = [
     {
-      color:"#F2C351",
+      color: "#F2C351",
       icon: <GiBinoculars />,
       title: "vision",
-      description:
-        "Our vision at the HIGPL is to empower individuals and organizations with the knowledge and skills they need to get started in digital Nepal. We are glad to be the leading provider of quality education and services in the field of information technology.",
+      description: vision || ""
     },
     {
-      margin:"300px",
-      color:"#1FA67A",
+      margin: "300px",
+      color: "#1FA67A",
       icon: <IoIosRocket />,
       title: "mission",
-      description:
-        "Our mission at the HIGPL is to provide high-quality education, services and proper infrastructure to individuals and organizations in information technology. We aim to achieve this through offering a range of updated courses, proper infrastructure, and best quality services and make the dream of digital Nepal true.",
+      description: mission || ""
     },
     {
-      color:'#5A5ECA',
+      color: '#5A5ECA',
       icon: <TbClipboardText />,
       title: "objectives",
-      description:
-        " Our mission at the HIGPL is to provide high-quality education, services and proper infrastructure to individuals and organizations in information technology. We aim to achieve this through offering a range of updated courses, proper infrastructure, and best quality services and make the dream of digital Nepal true.        ",
+      description: objectives || ""
     },
   ];
   return (
@@ -36,9 +33,9 @@ function MIssionVision() {
           {data.map((val, i) => {
             return (
               <div key={i} className="flex  capitalize my-20 ">
-                <div className=" text-4xl w-fit h-fit p-5 mt-5 rotate-45   rounded-md text-white" style={{background:val.color, marginLeft:val.margin}}>
+                <div className=" text-4xl w-fit h-fit p-5 mt-5 rotate-45   rounded-md text-white" style={{ background: val.color, marginLeft: val.margin }}>
                   <div className="-rotate-45" >
-                  {val.icon}
+                    {val.icon}
                   </div>
                 </div>
                 <div>

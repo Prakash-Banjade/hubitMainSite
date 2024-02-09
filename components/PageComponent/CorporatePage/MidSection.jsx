@@ -37,7 +37,7 @@ const MidSection = ({ trainings }) => {
             return (
               <div className="relative shadow-lg group rounded-md  max-h-[400px] grid place-items-center" key={service?.id}>
                 <Image
-                  src={`https://hubmainback.hubit.com.np/public/${service?.featured_image}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/public/${service?.featured_image}`}
                   height={350}
                   width={350}
                   alt="data loading"
@@ -45,9 +45,9 @@ const MidSection = ({ trainings }) => {
                   priority
                 />
                 <div className="absolute bottom-0 left-0 w-full h-full rounded-md bg-black bg-opacity-50 flex justify-center items-center">
-                  <h2 className="text-white text-2xl text-center px-2 mt-auto">{service?.name}</h2>
+                  <h2 className="text-white text-xl text-center px-2 mt-auto">{service?.name}</h2>
                 </div>
-                <div className="absolute group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none opacity-0 transition-all left-20 prose xl:prose-xl bg-white shadow-md p-2 rounded-md" dangerouslySetInnerHTML={{ __html: service?.content }} />
+                {/* <div className="absolute group-hover:opacity-100 group-hover:pointer-events-auto pointer-events-none opacity-0 transition-all left-20 prose xl:prose-xl bg-white shadow-md p-2 rounded-md" dangerouslySetInnerHTML={{ __html: service?.content }} /> */}
               </div>
             );
           })}

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 
 function SideFilter({ Courses, ClickedCategory, Category, setClickedCategory, setClickedCourse, ClickedCourse }) {
@@ -16,7 +17,7 @@ function SideFilter({ Courses, ClickedCategory, Category, setClickedCategory, se
                         <div>All</div>
                     </div>
                     {
-                        Category.map((val, i) => {
+                        Category?.map((val, i) => {
                             return <div key={i} onClick={() => {
                                 setClickedCategory(val.name)
                             }} className='flex items-center justify-left cursor-pointer gap-4 text-md font-Poppins'>

@@ -20,7 +20,7 @@ const schema = yup.object().shape({
     .string()
     .required("contact number is required")
     .max(10, "invalid number"),
-  description: yup.string().required("type your description"),
+  message: yup.string().required("type your message"),
 });
 
 function Inquiry() {
@@ -45,16 +45,15 @@ function Inquiry() {
       name: "phone",
       type: "text",
     },
-    {
-      name: "course",
-
-      as: "select",
-      option: [],
-    },
+    // {
+    //   name: "course",
+    //   as: "select",
+    //   option: [],
+    // },
     {
       pad: "10px",
       icon: <BsChatSquareTextFill />,
-      name: "description",
+      name: "message",
       as: "textarea",
     },
   ];
@@ -62,49 +61,33 @@ function Inquiry() {
   // post data
   const postData = (val, resetForm) => {
     //  test
-    resetForm();
     try {
       axios
-        .post("/inquire", val)
+        .post("/enquiry", val)
         .then((res) => {
-          if (res.status == "201") {
+          if (res.status == 200) {
+            resetForm()
             toast.success("submitted successfully");
           }
         })
         .catch((err) => {
-          console.log(err);
+          toast.error(err?.message || "Something went wrong")
         });
-    } catch (error) {}
+    } catch (error) { }
   };
-  const [course, setCourse] = useState([]);
-  const getData = () => {
-    try {
-      axios
-        .get("/courses")
-        .then((res) => {
-          console.log(res);
-          setCourse(res.data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+
+
   // useEffect(() => {
   //   FormFields[3].option = course;
   // }, [course]);
-  let data = [
-    {
-      _id: "0",
-      course_name: "select course name",
-    },
-  ];
-  FormFields[3].option.push(...data, ...course);
+  // let data = [
+  //   {
+  //     _id: "0",
+  //     title: "select course name",
+  //   },
+  // ];
+
+  // FormFields[3].option.push(...data, ...course);
 
   return (
     <>
@@ -121,11 +104,10 @@ function Inquiry() {
         </div>
         {/* form body */}
         <div
-          className={`border-none rounded-lg fixed top-32 bottom-48 right-0 w-72 h-fit bg-white  shadow-[0_35px_60px_-15px_rgba(0.5,0,0,0.5)] text-center py-5 Poppins  cursor-pointer ${
-            Show
-              ? "transition-all duration-500 delay-100 "
-              : "ease-in-out duration-500 delay-100 -mr-96"
-          }`}
+          className={`border-none rounded-lg fixed top-32 bottom-48 right-0 w-72 h-fit bg-white  shadow-[0_35px_60px_-15px_rgba(0.5,0,0,0.5)] text-center py-5 Poppins  cursor-pointer ${Show
+            ? "transition-all duration-500 delay-100 "
+            : "ease-in-out duration-500 delay-100 -mr-96"
+            }`}
         >
           <div className="flex justify-between px-5">
             <p className="capitalize text-center text-main text-2xl font-medium pb-2 Poppins">
@@ -141,8 +123,8 @@ function Inquiry() {
               name: "",
               email: "",
               phone: "",
-              course: "",
-              description: "",
+              message: "",
+              type: "enquiry"
             }}
             validationSchema={schema}
             onSubmit={(val, { resetForm }) => {
@@ -152,69 +134,40 @@ function Inquiry() {
             {({ handleSubmit, values }) => {
               return (
                 <Form
-                  action="post"
-                  onSubmit={handleSubmit}
+
                   className="px-5 flex flex-col  "
                 >
                   {FormFields.map((val, i) => {
-                    if (val.as === "select") {
-                      return (
-                        <div key={i} className="py-2">
+
+                    return (
+                      <div key={i} className="flex flex-col py-2  ">
+                        <ErrorMessage
+                          name={val.name}
+                          component={"div"}
+                          className="text-red-700 poppins text-[10px] w-full text-left capitalize"
+                        />
+                        <div
+                          className="w-full h-fit text-gray-600  rounded-md bg-gray-200  pl-3  "
+                          style={{
+                            display: "flex",
+                            alignItems: val.position,
+                          }}
+                        >
+                          <div style={{ paddingTop: val.pad }}>
+                            {val.icon}
+                          </div>
                           <Field
                             as={val.as}
+                            type={val.type}
                             placeholder={`Enter your ${val.name}`}
                             name={val.name}
-                            className="outline-none w-full text-xs  py-2.5 px-6  rounded-md  text-gray-500 bg-gray-200"
-                          >
-                            {val.option?.map((val, i) => {
-                              return (
-                                <option
-                                  key={i}
-                                  value={val._course}
-                                  className="text-gray-500 text-xs  "
-                                >
-                                  {val.course_name}
-                                </option>
-                              );
-                            })}
-                          </Field>
-                          <ErrorMessage
-                            name={val.name}
-                            component={"div"}
-                            className="text-red-600 text-[10px] "
+                            className=" outline-none  border-b text-xs bg-transparent  py-2 px-3 "
                           />
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div key={i} className="flex flex-col py-2  ">
-                          <ErrorMessage
-                            name={val.name}
-                            component={"div"}
-                            className="text-red-700 poppins text-[10px] w-full text-left capitalize"
-                          />
-                          <div
-                            className="w-full h-fit text-gray-600  rounded-md bg-gray-200  pl-3  "
-                            style={{
-                              display: "flex",
-                              alignItems: val.position,
-                            }}
-                          >
-                            <div style={{ paddingTop: val.pad }}>
-                              {val.icon}
-                            </div>
-                            <Field
-                              as={val.as}
-                              type={val.type}
-                              placeholder={`Enter your ${val.name}`}
-                              name={val.name}
-                              className=" outline-none  border-b text-xs bg-transparent  py-2 px-3 "
-                            />
 
-                          </div>
                         </div>
-                      );
-                    }
+                      </div>
+                    );
+
                   })}
 
                   <button

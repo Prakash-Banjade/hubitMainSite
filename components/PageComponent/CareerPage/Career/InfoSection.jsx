@@ -1,6 +1,6 @@
 import React from 'react'
-import Image from 'next/image'
-import image_1 from "../../../Resources/careerpic.jpg"
+// import Image from 'next/image'
+// import image_1 from "../../../Resources/careerpic.jpg"
 import { BsShieldFillCheck } from "react-icons/bs"
 function InfoSection() {
 
@@ -18,14 +18,14 @@ function InfoSection() {
       bottom: "15px",
       width: "400px",
       height: "240px",
-      image: image_1,
+      // image: image_1,
     },
 
     {
       top: "30px",
       width: "400px",
       height: "240px",
-      image: image_1,
+      // image: image_1,
     },
     {
       width: "400px",
