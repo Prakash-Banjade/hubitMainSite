@@ -2,25 +2,8 @@ import React, { useState, useEffect } from "react";
 import { GiOpenBook } from "react-icons/gi";
 import { BsArrowRight } from "react-icons/bs";
 import axios from "../../../UI/Axios/Axios";
-function CourseStatus() {
-  const [courses, setCourses] = useState([]);
-  const getData = () => {
-    try {
-      axios
-        .get("/courses")
-        .then((res) => {
-          setCourses(res.data?.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+function CourseStatus({ courses }) {
+
   const CourseStatus = [
     {
       color: "#A0047D",
@@ -32,7 +15,7 @@ function CourseStatus() {
     {
       color: "#1FA67A",
       icon: <GiOpenBook />,
-      counting: courses?.length,
+      counting: 0,
       status: "Upcomming Course",
     },
     {

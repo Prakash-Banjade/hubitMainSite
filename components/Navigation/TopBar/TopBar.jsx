@@ -45,16 +45,15 @@ function TopBar({ iconClick, setIconClick }) {
               {NavData.map((val, i) => {
                 return (
                   <div className="flex gap-3  items-center" key={i}>
-                    <Link href={val.path} passHref>
-                      <div
-                        className={`${
-                          val.path === router.asPath
-                            ? "border-b-2 border-main"
-                            : ""
+                    <Link href={val.path}
+
+                      className={`${val.path === router.asPath
+                          ? "border-b-2 border-main"
+                          : ""
                         } text-gray-700 text-xs xl:text-sm xxl:text-base w-fit cursor-pointer`}
-                      >
-                        {val.title}
-                      </div>
+                    >
+                      {val.title}
+
                     </Link>
                     <div className="h-[13px] w-[1px] bg-gray-600"></div>
                   </div>

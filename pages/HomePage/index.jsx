@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import WhyHub from "../../components/PageComponent/HomePage/WhyHub/whyHub";
 // import CompanyMoto from "../../components/PageComponent/HomePage/Companymoto/Moto";
 import WelcomePortal from "../../components/PageComponent/HomePage/WelcomePortal/WelcomePortal";
@@ -10,7 +10,7 @@ import PopularCourses from "../../components/PageComponent/HomePage/PopularCours
 import { TbCertificate } from "react-icons/tb";
 import Home from "./Home";
 import CallSection from "../../components/PageComponent/HomePage/LetsCallSection/CallSection";
-import PlacementPartners from "../../components/PageComponent/HomePage/PlacementPartners/placementPartners";
+// import PlacementPartners from "../../components/PageComponent/HomePage/PlacementPartners/placementPartners";
 import CourseStatus from "../../components/PageComponent/HomePage/courseStatus.jsx/CourseStatus";
 import axios from "../../components/UI/Axios/Axios";
 import WhatClientsSays from "../../components/PageComponent/AboutPage/What ClientsSays/WhatClientsSays";
@@ -19,7 +19,7 @@ import SuccessStories from "../../components/PageComponent/HomePage/SuccessStori
 import FindUsOn from "../../components/PageComponent/HomePage/FindUsOn/finUsOn";
 
 function Index() {
-  const [card, setCard] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [Moto, setMoto] = useState([
     {
       icon: <TbCertificate />,
@@ -39,18 +39,21 @@ function Index() {
       These resources may include Book, Project, Assignments, and language learning tools`,
     },
   ]);
+
+
   const images = [{ image: image1 }, { image: image2 }];
 
   const getData = () => {
+    console.log(Date.now())
     try {
       axios.get('/courses').then(res => {
-        console.log(res.data.data, 'courses from index');
-        setCard(res.data?.data);
+        setCourses(res.data?.result);
       })
     } catch (e) {
       console.log(e);
     }
   }
+
   // const getReview = () => {
   //   let placeId = "ChIJU6XiOYiGljkRv4xyNSswlBE";
   //   let apiKey = "AIzaSyAKQo1DhCmxNhzHWqelTUs_T3jS_pGiBG4";
@@ -74,21 +77,36 @@ function Index() {
     getData();
     // getReview();
   }, []);
+
+
+
+  // For fetching homepage content
+
+  const [homeContent, setHomeContent] = useState({})
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/home")
+      setHomeContent(response?.data?.result?.[0])
+    }
+    fetchData()
+  }, [])
+
+
   return (
     <div className="">
-      <Home image={image} />
+      <Home homeContent={homeContent} image={image} />
 
       <div className=" pt-8 pb-20">
-        <PopularCourses card={card} value="onlyTag" />
+        <PopularCourses card={courses} value="onlyTag" />
       </div>
 
-      <CourseStatus />
+      <CourseStatus courses={courses} />
 
-      <WelcomePortal images={images} />
+      <WelcomePortal content={homeContent?.portal} images={images} />
       <WhyHub />
       <WhatClientsSays />
       <OurAchievements />
-      <PlacementPartners />
+      {/* <PlacementPartners /> */}
       <SuccessStories />
       <FindUsOn />
       <CallSection />

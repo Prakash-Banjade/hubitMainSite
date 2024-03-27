@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import SideFilter from './SideFilter';
 import AllCourses from './AllCourses';
 import axios from '../../../UI/Axios/Axios'
@@ -14,10 +14,8 @@ function CourseDesign() {
     const getCategory = () => {
         try {
             axios.get('/category').then(res => {
-                console.log(res.data)
                 if (res.status === 200) {
-                    setCategory(res.data?.data)
-                    console.log('category: ', res.data?.data);
+                    setCategory(res.data?.result)
                 }
             }).catch(err => {
                 console.log(err)
@@ -29,9 +27,8 @@ function CourseDesign() {
     const getCourse = () => {
         try {
             axios.get('/courses').then(res => {
-                console.log(res.data)
                 if (res.status === 200) {
-                    setCourses(res.data?.data)
+                    setCourses(res.data?.result)
                 }
             }).catch(err => {
                 console.log(err)
@@ -40,14 +37,15 @@ function CourseDesign() {
             console.log(error);
         }
     }
+
+
     useEffect(() => {
         getCategory();
         getCourse();
     }, [])
 
-    const FilterCourse = (options) => {
-        console.log('filter', ClickedCategory.replace(/\s/g, ''), 'hey hey');
-        return options.filter(option => option?.category?.name?.replace(/\s/g, '').includes(ClickedCategory.replace(/\s/g, '')))
+    const FilterCourse = (courses) => {
+        return courses?.filter(course => course?.category?.name?.replace(/\s/g, '').includes(ClickedCategory.replace(/\s/g, '')))
     }
 
     return (

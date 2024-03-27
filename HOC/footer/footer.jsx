@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiCurrentLocation } from "react-icons/bi";
 import { BsWhatsapp } from "react-icons/bs";
 // import { AiFillInstagram } from "react-icons/ai";
@@ -8,6 +8,7 @@ import { IoMdMail } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
 import Icons from "../../components/Navigation/Navitem/iconitem";
+import axios from "../../components/UI/Axios/Axios"
 function Footer() {
   const Wicon = [
     {
@@ -17,19 +18,34 @@ function Footer() {
   ];
 
   const links = [
-    { title: "home" },
-    { title: "about us" },
-    { title: "our services" },
-    { title: "latest information" },
-    { title: "recent a quote" },
-    { title: "get in touch" },
+    { title: "home", path: "/" },
+    { title: "about us", path: "/about" },
+    { title: "our services", path: "/services" },
+    { title: "latest information", path: "/" },
+    { title: "recent a quote", path: "/" },
+    { title: "get in touch", path: "/" },
   ];
   const about = [
-    { title: "company" },
-    { title: "careers" },
-    { title: "customers" },
-    { title: "contact us" },
+    { title: "company", path: "/about" },
+    { title: "careers", path: "/careers" },
+    { title: "customers", path: "/" },
+    { title: "contact us", path: "/contact" },
   ];
+
+  const course = [
+    { title: "Mern Stack", path: "/" },
+    { title: "Backend Development", path: "/" },
+    { title: "Web Designing", path: "/" },
+  ];
+
+  const [contact, setContact] = useState()
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/contact")
+      setContact(response?.data?.result[0])
+    }
+    fetchData()
+  }, [])
   return (
     <div className="px-4 lg:px-8 xl:px-9 xxl:px-10 bg-black py-8 ">
       <div className="mx-auto grid gap-5 text-white grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 xxl:grid-cols-4">
@@ -37,49 +53,48 @@ function Footer() {
           <div className="text-lg xl:text-xl xxl:text-2xl mb-2 Poppins">
             links
           </div>
-          <div>
+          <div className="flex flex-col gap-y-2">
             {links.map((val, i) => {
               return (
-                <div key={i}>
-                  <div className="my-2  cursor-pointer text-xs xl:text-sm xxl:text-base  w-fit textPrimary">
-                    {val.title}
-                  </div>
-                </div>
+
+                <Link key={i} href={val.path || "/"} className="inline-block leading-9  cursor-pointer text-xs xl:text-sm xxl:text-base  w-fit textPrimary">
+                  {val.title}
+                </Link>
+
               );
             })}
           </div>
         </div>
         <div className="col-span-1 capitalize">
-          <div className="text-lg xl:text-xl xxl:text-2xl  mb-2 Poppins ">
-            about
+          <div className="text-lg xl:text-xl xxl:text-2xl mb-2 Poppins">
+            About
           </div>
-          <div>
+          <div className="flex flex-col gap-y-2">
             {about.map((val, i) => {
               return (
-                <div key={i}>
-                  <div className="my-2 cursor-pointer w-fit text-xs xl:text-sm xxl:text-base textPrimary">
-                    {val.title}
-                  </div>
-                </div>
+
+                <Link key={i} href={val.path || "/"} className="inline-block leading-9  cursor-pointer text-xs xl:text-sm xxl:text-base  w-fit textPrimary">
+                  {val.title}
+                </Link>
+
               );
             })}
           </div>
         </div>
-        <div className="col-span-2 sm:col-span-1  md:col-span-1 lg:col-span-1  xl:col-span-1 xxl:col-span-1 capitalize">
-          <div className="text-lg xl:text-xl xxl:text-2xl  mb-2 Poppins">
-            featured courses
+        <div className="col-span-1 capitalize">
+          <div className="text-lg xl:text-xl xxl:text-2xl mb-2 Poppins">
+            Popular Courses
           </div>
-          <div className="mt-2 text-sm xl:text-base xxl:text-lg ">
-            MERN Stack Development
-          </div>
-          <div className="mb-2 text-xs xl:text-sm xxl:text-base">
-            starts in <span className="text-main"> March 20,2020</span>
-          </div>
-          <div className="mt-2 text-sm xl:text-base xxl:text-lg ">
-            Web Designing
-          </div>
-          <div className="mb-2 text-xs xl:text-sm  xxl:text-base">
-            starts in <span className="text-main"> April 21,2020</span>
+          <div className="flex flex-col gap-y-2">
+            {course.map((val, i) => {
+              return (
+
+                <Link key={i} href={val.path || "/"} className="inline-block leading-9  cursor-pointer text-xs xl:text-sm xxl:text-base  w-fit textPrimary">
+                  {val.title}
+                </Link>
+
+              );
+            })}
           </div>
         </div>
         <div className="col-span-2 sm:col-span-1  md:col-span-1 lg:col-span-1  xl:col-span-1 xxl:col-span-1">
@@ -90,19 +105,20 @@ function Footer() {
             <div className="flex space-x-4 my-2   md:text-sm xxl:my-3 items-center">
               <IoCall className="text-sm xl:text-base xxl:text-lg" />
               <p className="text-xs xl:text-sm xxl:text-base">
-                +977-071532805,9827494116,9857045414
+                {contact?.tel + ", " + contact?.phone}
+                { }
               </p>
             </div>
             <div className="flex  items-center space-x-4 my-2  text-xs xl:text-sm xxl:text-base  ">
               <IoMdMail className="text-sm xl:text-base xxl:text-lg" />
-              <a href="">training@hubit.com.np</a>
+              <a href="">{contact?.email}</a>
             </div>
             <div className="flex space-x-4 my-2 text-xs xl:text-sm xxl:text-base xxl:my-3  items-center">
               <BiCurrentLocation className="text-sm xl:text-base xxl:text-lg" />
               <p className="capitalize">
-                Butwal-09 (Ganesh Path),Milanchowk
-                <br />
-                Rupandehi Nepal
+                {contact?.address}
+
+
               </p>
             </div>
           </div>

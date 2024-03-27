@@ -3,6 +3,10 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { FiMail } from "react-icons/fi";
 import { BiTime } from "react-icons/bi";
+import { Field, Form, Formik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+
+import axios from "../../UI/Axios/Axios"
 const Body = () => {
   const contact = [
     {
@@ -34,6 +38,7 @@ const Body = () => {
       ),
     },
   ];
+
   return (
     <>
       <section className="bg-gray-100  ">
@@ -46,7 +51,7 @@ const Body = () => {
                   className="flex gap-8 bg-white rounded-lg w-[25vw] h-[15vh] mx-10 my-5 p-4 items-center sm:w-full xs:w-full  "
                   key={i}
                 >
-                  {icon}{" "}
+                  {icon}
                   <div className="flex-col ">
                     <p>{title}</p>
                     <p>{text}</p>
@@ -55,44 +60,83 @@ const Body = () => {
               );
             })}
           </div>
-          <div className="lg:w-1/2 md:w-1/2 xs:ml-10 sm:ml-10 md:ml-10 bg-white h-[80vh] flex flex-col  w-[40vw] sm:w-full xs:w-full md:py-8 mt-8 md:mt-0 border-2 border-gray-400 border-solid rounded-xl p-10 mr-10">
-            <h2 className="text-main text-lg mb-1 font-bold">Message Us </h2>
-            <p className="leading-relaxed mb-5 text-gray-600">
-             You can directly contact us by filling this form also{" "}
-            </p>
-            <div className="relative mb-4">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
-                placeholder="Full Name"
-              />
-            </div>
-            <div className="relative mb-4">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                placeholder="Email Address"
-              />
-            </div>
-            <div className="relative mb-4">
-              <textarea
-                id="message"
-                name="message"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                placeholder="Write a Message"
-              />
-            </div>
-            <button
-              className="text-white 
-            w-48  bg-main border-0 py-2 px-6 focus:outline-none hover:bg-hoverMain rounded-[100px] text-lg sm:w-44 xs:w-44 "
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              phone: "",
+              message: "",
+              type: "contact"
+            }}
+            onSubmit={async (values, { resetForm }) => {
+              try {
+                const respose = await axios.post("/enquiry", values)
+                if (respose.status === 200) {
+                  resetForm()
+
+                  alert("Message sent")
+                }
+              }
+              catch (error) {
+                console.log(error)
+              }
+            }}
+          >
+            <Form className="lg:w-1/2 md:w-1/2 xs:ml-10 sm:ml-10 md:ml-10 bg-white h-[80vh] flex flex-col  w-[40vw] sm:w-full xs:w-full md:py-8 mt-8 md:mt-0 border-2 border-gray-400 border-solid rounded-xl p-10 mr-10"
             >
-              Send Message{" "}
-            </button>
-          </div>
+              <h2 className="text-main text-lg mb-1 font-bold">Message Us </h2>
+              <p className="leading-relaxed mb-5 text-gray-600">
+                You can directly contact us by filling this form also
+              </p>
+              <div className="relative mb-4">
+                <Field
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out "
+                  placeholder="Full Name"
+                />
+              </div>
+              <div className="relative mb-4">
+                <Field
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  placeholder="Email Address"
+                />
+              </div>
+              <div className="relative mb-4">
+                <Field
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  required
+
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  placeholder="Phone"
+                />
+              </div>
+              <div className="relative mb-4">
+                <Field as="textarea"
+                  id="message"
+                  name="message"
+                  required
+                  className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                  placeholder="Write a Message"
+                />
+              </div>
+              <button
+                className="text-white 
+            w-48  bg-main border-0 py-2 px-6 focus:outline-none hover:bg-hoverMain rounded-[100px] text-lg sm:w-44 xs:w-44 "
+              >
+                Send Message
+              </button>
+            </Form>
+          </Formik>
         </div>
       </section>
     </>

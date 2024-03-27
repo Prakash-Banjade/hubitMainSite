@@ -16,24 +16,29 @@ const schema = yup.object().shape({
     .required("Required!!"),
 });
 function CallSection() {
-//   const FormFields=[{
-//     name: "name",
-//     type: "Text",
-//     icon: <IoPerson/>,
-//     placeholder: "fullname",
-//   },
-// {
-//   name: "phone",
-//   type: "Text",
-//   icon: <BsTelephoneFill />,
-//   placeholder: "phone no.",
-// },]
-  const postData = (val, resetForm) => {
-    resetForm();
-    toast.success("submitted successfully");
+  //   const FormFields=[{
+  //     name: "name",
+  //     type: "Text",
+  //     icon: <IoPerson/>,
+  //     placeholder: "fullname",
+  //   },
+  // {
+  //   name: "phone",
+  //   type: "Text",
+  //   icon: <BsTelephoneFill />,
+  //   placeholder: "phone no.",
+  // },]
+  const postData = async (val, resetForm) => {
     try {
-      axios.post("https://hubitbackend.onrender.com/quickcall", val);
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/enquiry`, val)
+        .then((res) => {
+          resetForm()
+          toast.success("submitted successfully!!");
+        }).catch((error) => {
+          console.log(error)
+        })
     } catch (error) {
+      toast.error("Something went wrong!!");
       console.log(error);
     }
   };
@@ -56,12 +61,12 @@ function CallSection() {
             initialValues={{
               name: "",
               phone: "",
+              type: "quickcall"
             }}
             validationSchema={schema}
             onSubmit={(val, { resetForm }) => {
-              console.log(val);
               postData(val, resetForm);
-              //toast.success("submitted successfully!!");
+
             }}
           >
             {({ handleSubmit }) => (

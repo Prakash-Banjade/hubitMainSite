@@ -3,7 +3,7 @@ import Buttom from "../../../PageComponent/Courses/CourseSection/Buttom";
 import ScheduleSection from "../../../PageComponent/Courses/UpcomingSchedule/ScheduleSection";
 import Layout from "../../../../HOC/Layout/Layout";
 import RelatedCourseCard from "../../../PageComponent/Courses/RelatedCourse/RelatedCourseSection.jsx";
-import EnquiryForm from "../../../PageComponent/Courses/UpcomingSchedule/EnquiryForm";
+// import EnquiryForm from "../../../PageComponent/Courses/UpcomingSchedule/EnquiryForm";
 import { useRouter } from "next/router";
 import OverView from "../Overview/OverView";
 import CourseCuriculum from "../Curiculum/CourseCuriculum";
@@ -20,12 +20,9 @@ const CourseDetails = ({ detail }) => {
   useEffect(() => {
     if (router.isReady) {
       const { id } = router.query;
-
       axiosInstance.get(`/courses/${id}`).then((res) => {
-        console.log(res?.data, 'courses from course detail');
-        setData(res?.data);
+        setData(res?.data?.result);
       })
-      
     }
   }, [router.isReady, router.query]);
   const tabs = [
@@ -41,7 +38,7 @@ const CourseDetails = ({ detail }) => {
         return <OverView data={data} />;
         break;
       case "curiculum":
-        return <CourseCuriculum />;
+        return <CourseCuriculum data={data?.syllabus} />;
         break;
       case "instructor":
         return <CourseInstructor instructors={data?.instructor} />;
@@ -68,9 +65,8 @@ const CourseDetails = ({ detail }) => {
                   return (
                     <div
                       key={i}
-                      className={` ${
-                        active === val.title ? "text-white tipDown" : ""
-                      } capitalize px-1 lg:px-4 xl:px-4 xxl:px-4 py-2 cursor-pointer `}
+                      className={` ${active === val.title ? "text-white tipDown" : ""
+                        } capitalize px-1 lg:px-4 xl:px-4 xxl:px-4 py-2 cursor-pointer `}
                       onClick={() => setActive(val.title)}
                     >
                       {val.title}
@@ -95,7 +91,7 @@ const CourseDetails = ({ detail }) => {
           </div>
           <div>
             <ScheduleSection />
-            <EnquiryForm />
+            {/* <EnquiryForm /> */}
           </div>
         </div>
       </div>

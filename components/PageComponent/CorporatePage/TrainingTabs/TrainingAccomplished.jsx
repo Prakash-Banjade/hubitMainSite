@@ -2,8 +2,6 @@ import React from "react";
 import image from "../../../Resources/working_photo.png";
 import Image from "next/image";
 function TrainingAccomplished({ trainings }) {
-
-  console.log(trainings);
   return (
     <div>
       <div className=" md:flex xl:flex xxl:flex  flex-wrap gap-5  w-full items-center mt-16 ">
@@ -17,7 +15,7 @@ function TrainingAccomplished({ trainings }) {
             >
               <div className="w-[300px] md:w-[250px] xl:w-[250px] xxl:w-[250px] ">
                 <Image
-                  src={training.featured_image ? `https://hubmainback.hubit.com.np/public/${training.featured_image}` : ''}
+                  src={training.featured_image ? `${process.env.NEXT_PUBLIC_API_URL}/public/${training.featured_image}` : ''}
                   layout="responsive"
                   height={150}
                   width={200}
@@ -32,7 +30,7 @@ function TrainingAccomplished({ trainings }) {
               <div className="flex justify-between items-center px-4 pb-3">
                 <div className="w-10 h-10 bg-gray-300  rounded-full">
                   <Image
-                    src={training.featured_image ? `https://hubmainback.hubit.com.np/public/${training.featured_image}` : ''}
+                    src={training.featured_image ? `${process.env.NEXT_PUBLIC_API_URL}/public/${training.featured_image}` : ''}
                     layout="responsive"
                     // objectfit="cover"
                     width={100}

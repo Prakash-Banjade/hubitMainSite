@@ -3,12 +3,10 @@ import React from "react";
 import { useRouter } from "next/router";
 
 const Leftbanner = ({ data }) => {
-  console.log(data);
-
   const router = useRouter();
   const handleClick = () => {
     router.push({
-      pathname: `/admissionForm/${id}`,
+      pathname: `/admissionForm/${data?.id}`,
     });
   };
   return (
